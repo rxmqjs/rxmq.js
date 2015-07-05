@@ -1,0 +1,26 @@
+{
+  "name": "rxmq",
+  "version": "0.1.0",
+  "description": "JavaScript pub/sub library based on RxJS",
+  "main": "es5/component.js",
+  "es6": "index.js",
+  "scripts": {
+    "cover": "gulp cover",
+    "build": "gulp build",
+    "test": "gulp test",
+    "prepublish": "npm run build"
+  },
+  "contributors": [
+    "Tim Ermilov <yamalight@gmail.com> (http://codezen.net)",
+    "Denis Kuchelev (https://github.com/kuchelev)"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "rx": "^2.5.3"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "should": "^7.0.1",
+    "turris-gulp-tasks": "^0.4.3"
+  }
+}
