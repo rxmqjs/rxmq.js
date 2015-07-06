@@ -72,7 +72,7 @@ You can also go even deeper and get a specific instance for topics, like so:
 
 ```js
     const channel = Rxmq.channel('posts');
-    const topic = channel.topic('post.add');
+    const topic = channel.subject('post.add');
 
     const subscription = channel.observe('post.add')
         .subscribe(onNext(data) {
@@ -198,7 +198,7 @@ dupSubscription.dispose();
 ### Connecting external Rx.Observable to Rxmq topic
 
 ```js
-const topic = channel.topic('ajax');
+const topic = channel.subject('ajax');
 const ajax = Rx.Observable.fromPromise($.ajax({url: 'http://...'}).promise());
 topic.multicast(ajax).connect();
 ```
