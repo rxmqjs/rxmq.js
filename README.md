@@ -181,7 +181,7 @@ starSubscription.dispose();
 const dupChannel = Rxmq.channel('Blink');
 const dupSubscription = dupChannel.observe('WeepingAngel.#')
     .distinctUntilChanged()
-    .onNext((data) => {
+    .subscribe((data) => {
         $('<li>' + data.value + '</li>').appendTo('#example4');
     });
 // demonstrating multiple channels per topic being used
