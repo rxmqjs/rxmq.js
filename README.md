@@ -2,8 +2,6 @@
 
 > JavaScript pub/sub library based on RxJS
 
-## Version 0.1.0
-
 ## What is it?
 
 Rxmq.js is an in-memory message bus based on [reactive extensions](https://github.com/Reactive-Extensions/RxJS) - inspired by [postal.js](https://github.com/postaljs/postal.js) - written in JavaScript using ES6 and Babel.
