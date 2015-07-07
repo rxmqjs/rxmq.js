@@ -10,11 +10,11 @@ build:
   steps:
     - npm-install
     - npm-test
+    - script:
+      code: npm run docs
 
 deploy:
   steps:
-    - script:
-      code: npm run docs
     - lukevivier/gh-pages:
       token: $GH_TOKEN
       basedir: esdoc
