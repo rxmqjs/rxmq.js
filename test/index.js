@@ -157,6 +157,21 @@ describe('RxMQ', () => {
                     done();
                 });
         });
+
+        /*
+         * Method overrides test
+         */
+        it('should subscribe using channel.subscribe(topic, {onNext}) method alias', (done) => {
+            const topic = 'oneToManyAliasPublish';
+            const sub = channel.observe(topic);
+            const testData = 'testGlobalPush';
+            sub.subscribe((data) => {
+                should(data).equal(testData);
+                done();
+            });
+
+            channel.onNext(topic, {data: testData});
+        });
     });
 });
 

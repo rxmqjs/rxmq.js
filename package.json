@@ -8,6 +8,7 @@
     "cover": "gulp cover",
     "build": "gulp build",
     "test": "gulp test",
+    "docs": "gulp esdoc",
     "prepublish": "npm run build"
   },
   "contributors": [
@@ -21,6 +22,6 @@
   "devDependencies": {
     "gulp": "^3.9.0",
     "should": "^7.0.1",
-    "turris-gulp-tasks": "^0.4.3"
+    "turris-gulp-tasks": "^0.6.0"
   }
 }
