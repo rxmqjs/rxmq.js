@@ -1,0 +1,14 @@
+# The container definition we want to use for developing our app
+box: iojs
+# Defining the dev pipeline
+dev:
+  steps:
+    - npm-install
+    - npm-test
+    - script:
+        code: npm run docs
+
+build:
+  steps:
+    - npm-install
+    - npm-test
