@@ -1,14 +1,20 @@
 # The container definition we want to use for developing our app
 box: iojs
-# Defining the dev pipeline
+
 dev:
   steps:
     - npm-install
     - npm-test
-    - script:
-        code: npm run docs
 
 build:
   steps:
     - npm-install
     - npm-test
+
+deploy:
+  steps:
+    - script:
+      code: npm run docs
+    - lukevivier/gh-pages:
+      token: $GH_TOKEN
+      basedir: esdoc
