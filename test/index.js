@@ -118,6 +118,45 @@ describe('RxMQ', () => {
             multiChannel.subject(topic).onNext(testData);
             multiChannel.subject(topic).onCompleted();
         });
+
+        /*
+         * Request-response tests
+         */
+        it('should create one-to-one subscription', (done) => {
+            const topic = 'request-reply';
+            const rrSub = channel.subject(topic);
+            const testRequest = 'test request';
+            const testReply = 'test reply';
+
+            rrSub.subscribe(({data, replySubject}) => {
+                should(data).equal(testRequest);
+                replySubject.onNext(testReply);
+                replySubject.onCompleted();
+            });
+            channel.request({topic, data: testRequest})
+                .subscribe((replyData) => {
+                    should(replyData).equal(testReply);
+                    done();
+                });
+        });
+
+        it('should create one-to-one subscription with topic name as first param', (done) => {
+            const topic = 'request-reply';
+            const rrSub = channel.subject(topic);
+            const testRequest = 'test request';
+            const testReply = 'test reply';
+
+            rrSub.subscribe(({data, replySubject}) => {
+                should(data).equal(testRequest);
+                replySubject.onNext(testReply);
+                replySubject.onCompleted();
+            });
+            channel.request(topic, {data: testRequest})
+                .subscribe((replyData) => {
+                    should(replyData).equal(testReply);
+                    done();
+                });
+        });
     });
 });
 

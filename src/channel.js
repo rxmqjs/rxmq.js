@@ -49,6 +49,23 @@ class Channel {
         this.subject(topic).onNext(data);
     }
 
+    request(topic, {data} = {}) {
+        if (typeof topic === 'object') {
+            const {topic: newTopic, data: newData} = topic;
+            topic = newTopic;
+            data = newData;
+        }
+
+        const subj = this.utils.findSubjectsByName(this.subjects, topic);
+        if (!subj) {
+            return Rx.Observable.never();
+        }
+
+        const replySubject = new Rx.AsyncSubject();
+        subj.onNext({replySubject, data});
+        return replySubject;
+    }
+
     registerPlugin(plugin) {
         for (const prop in plugin) {
             if (!this.hasOwnProperty(prop)) {

@@ -195,6 +195,42 @@ dupChannel.onNext({topic: 'WeepingAngel.DontBlink', data: {value: 'Don\'t Blink'
 dupSubscription.dispose();
 ```
 
+### Using request-response pattern
+
+To make a request, you can do the following:
+```js
+const channel = rxmq.channel('user');
+
+channel.request({topic: "last.login", {data: { userId: 8675309 }})
+    .timeout(2000)
+    .subscribe(
+    (data) => console.log(`Last login for userId: ${data.userId} occurred on ${data.time}`),
+    (err) => console.error('Uh oh! Error:', err),
+    () => console.log('done!')
+);
+```
+
+To handle requests:
+```js
+// SUCCESS REPLY
+const subscription = channel.subscribe('last.login', ({data, replySubject}) => {
+    const result = getLoginInfo(data.userId);
+    // `replySubject` is just a Rx.AsyncSubject
+    replySubject.onNext({time: result.time, userId: data.userId});
+    replySubject.onCompleted();
+});
+
+// ERROR REPLY
+const subscription = channel.subscribe('last.login', ({data, replySubject}) => {
+    const result = getLoginInfo(data.userId);
+    // `replySubject` is just a Rx.AsyncSubject
+    replySubject.onError(new Error('No such user'));
+    replySubject.onCompleted();
+});
+```
+
+Make sure to *always* call `.onCompleted()` after you're done with dispatching your data.
+
 ### Connecting external Rx.Observable to Rxmq topic
 
 ```js
