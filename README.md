@@ -243,6 +243,10 @@ const ajax = Rx.Observable.fromPromise($.ajax({url: 'http://...'}).promise());
 topic.multicast(ajax).connect();
 ```
 
+## More References
+
+Please visit the [rxmq.js documentation](http://rxmqjs.github.io/rxmq.js/) website for full API documentation.
+
 ## Build, Dependencies, etc.
 
 * Rxmq depends only on [RxJS](https://github.com/Reactive-Extensions/RxJS), and since Rxmq really just uses `Rx.Subject` and `Rx.Observable.observe` methods, using [rx.lite](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/libraries/lite/rx.lite.md) is sufficient.

@@ -1,3 +1,13 @@
+# deps
 node_modules/
+
+# compiled
 es5/
+
+# generated
 coverage/
+esdoc/
+
+# ignore wercker stuff
+_builds/
+_steps/
