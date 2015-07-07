@@ -1,5 +1,9 @@
 # Rxmq.js
 
+[![wercker status](https://app.wercker.com/status/56f1fdd3a0180730a13447755e5714df/s "wercker status")](https://app.wercker.com/project/bykey/56f1fdd3a0180730a13447755e5714df)
+[![npm](https://img.shields.io/npm/v/rxmq.svg)](https://www.npmjs.com/package/rxmq)
+[![MIT](https://img.shields.io/npm/l/rxmq.svg)](http://opensource.org/licenses/MIT)
+
 > JavaScript pub/sub library based on RxJS
 
 ## What is it?
