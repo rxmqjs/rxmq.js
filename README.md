@@ -1,5 +1,7 @@
 # Rxmq.js
 
+[![Join the chat at https://gitter.im/rxmqjs/rxmq.js](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/rxmqjs/rxmq.js?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![wercker status](https://app.wercker.com/status/56f1fdd3a0180730a13447755e5714df/s "wercker status")](https://app.wercker.com/project/bykey/56f1fdd3a0180730a13447755e5714df)
 [![npm](https://img.shields.io/npm/v/rxmq.svg)](https://www.npmjs.com/package/rxmq)
 [![MIT](https://img.shields.io/npm/l/rxmq.svg)](http://opensource.org/licenses/MIT)
