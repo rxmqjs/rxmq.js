@@ -1,7 +1,6 @@
 # Rxmq.js
 
 [![Join the chat at https://gitter.im/rxmqjs/rxmq.js](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/rxmqjs/rxmq.js?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 [![wercker status](https://app.wercker.com/status/56f1fdd3a0180730a13447755e5714df/s "wercker status")](https://app.wercker.com/project/bykey/56f1fdd3a0180730a13447755e5714df)
 [![npm](https://img.shields.io/npm/v/rxmq.svg)](https://www.npmjs.com/package/rxmq)
 [![MIT](https://img.shields.io/npm/l/rxmq.svg)](http://opensource.org/licenses/MIT)
@@ -248,6 +247,12 @@ topic.multicast(ajax).connect();
 ## More References
 
 Please visit the [rxmq.js documentation](http://rxmqjs.github.io/rxmq.js/) website for full API documentation.
+
+## I still need help!
+
+Feel free to ask any questions you might have on [our gitter channel](https://gitter.im/rxmqjs/rxmq.js).
+Some of the developers and contributors are there most of the time.
+If you have any RxJS related questions, I'd recommend asking on [RxJS gitter channel](https://gitter.im/Reactive-Extensions/RxJS), it's pretty great!
 
 ## Build, Dependencies, etc.
 
