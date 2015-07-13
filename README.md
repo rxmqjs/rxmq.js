@@ -206,13 +206,13 @@ To make a request, you can do the following:
 ```js
 const channel = rxmq.channel('user');
 
-channel.request({topic: "last.login", {data: { userId: 8675309 }})
+channel.request('last.login', {data: {userId: 8675309}})
     .timeout(2000)
     .subscribe(
-    (data) => console.log(`Last login for userId: ${data.userId} occurred on ${data.time}`),
-    (err) => console.error('Uh oh! Error:', err),
-    () => console.log('done!')
-);
+        (data) => console.log(`Last login for userId: ${data.userId} occurred on ${data.time}`),
+        (err) => console.error('Uh oh! Error:', err),
+        () => console.log('done!')
+    );
 ```
 
 To handle requests:
