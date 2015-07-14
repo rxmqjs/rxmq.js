@@ -1,5 +1,6 @@
 /* global describe, it */
 import should from 'should';
+import Rx from 'rx';
 import Rxmq from '../index';
 
 describe('RxMQ', () => {
@@ -156,6 +157,33 @@ describe('RxMQ', () => {
                     should(replyData).equal(testReply);
                     done();
                 });
+        });
+
+        it('should create one-to-one subscription with custom reply subject', (done) => {
+            const topic = 'custom-request-reply';
+            const rrSub = channel.subject(topic);
+            const testRequest = 'test request';
+            const testReply = ['test reply', 'test reply 2', 'test reply 3'];
+
+            rrSub.subscribe(({replySubject}) => {
+                testReply.map((it) => replySubject.onNext(it));
+                replySubject.onCompleted();
+            });
+            // test reply
+            const fullReply = [];
+            channel.request(topic, {data: testRequest, DefaultSubject: Rx.Subject})
+                .subscribe(
+                    (replyData) => {
+                        fullReply.push(replyData);
+                    },
+                    (e) => {
+                        throw e;
+                    },
+                    () => {
+                        fullReply.map((it, i) => should(testReply[i]).equal(it));
+                        done();
+                    }
+                );
         });
 
         /*

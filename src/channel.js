@@ -177,10 +177,11 @@ class Channel {
     /**
      * Do a request that will be replied into returned Rx.AsyncSubject
      * Alias for '.request()' that uses single object as params
-     * @param  {Object}         options             Request options
-     * @param  {String}         options.topic       Topic name
-     * @param  {Any}            options.data        Request data
-     * @return {Rx.AsyncSubject}                    AsyncSubject that will dispatch the response
+     * @param  {Object}      options                   Request options
+     * @param  {String}      options.topic             Topic name
+     * @param  {Any}         options.data              Request data
+     * @param  {Object}      options.DefaultSubject    Rx.Subject to be used for response, defaults to Rx.AsyncSubject
+     * @return {Rx.AsyncSubject}                       AsyncSubject that will dispatch the response
      * @example
      * const channel = rxmq.channel('test');
      * channel.requestTo({
@@ -190,22 +191,23 @@ class Channel {
      *     // handle response
      * });
      */
-    requestTo({topic, data}) {
+    requestTo({topic, data, DefaultSubject = Rx.AsyncSubject}) {
         const subj = this.utils.findSubjectByName(this.subjects, topic);
         if (!subj) {
             return Rx.Observable.never();
         }
 
-        const replySubject = new Rx.AsyncSubject();
+        const replySubject = new DefaultSubject();
         subj.onNext({replySubject, data});
         return replySubject;
     }
     /**
      * Do a request that will be replied into returned Rx.AsyncSubject
-     * @param  {(String|Object)}      topic           Topic name or options object formatted like for '.requestTo()'
-     * @param  {Object}               options         Request options
-     * @param  {Object}               options.data    Request data
-     * @return {Rx.AsyncSubject}                      AsyncSubject that will dispatch the response
+     * @param  {(String|Object)} topic                   Topic name or options object formatted like for '.requestTo()'
+     * @param  {Object}          options                 Request options
+     * @param  {Object}          options.data            Request data
+     * @param  {Object}          options.DefaultSubject  Rx.Subject to be used for response, defaults to Rx.AsyncSubject
+     * @return {Rx.AsyncSubject}                         AsyncSubject that will dispatch the response
      * @example
      * const channel = rxmq.channel('test');
      * channel.request('test.topic', {
@@ -214,14 +216,15 @@ class Channel {
      *     // handle response
      * });
      */
-    request(topic, {data} = {}) {
+    request(topic, {data, DefaultSubject = Rx.AsyncSubject} = {}) {
         if (typeof topic === 'object') {
-            const {topic: newTopic, data: newData} = topic;
+            const {topic: newTopic, data: newData, DefaultSubject: NewSubject} = topic;
             topic = newTopic;
             data = newData;
+            DefaultSubject = NewSubject;
         }
 
-        return this.requestTo({topic, data});
+        return this.requestTo({topic, data, DefaultSubject});
     }
 
     /**

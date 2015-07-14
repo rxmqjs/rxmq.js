@@ -215,6 +215,18 @@ channel.request('last.login', {data: {userId: 8675309}})
     );
 ```
 
+It's also possible to make a request with custom reply subject, like so:
+```js
+const channel = rxmq.channel('user');
+
+channel.request('posts.all', {data: {userId: 8675309}, DefaultSubject: Rx.Subject})
+    .subscribe(
+        (post) => console.log(`Got post: ${post.id}`),
+        (err) => console.error('Uh oh! Error:', err),
+        () => console.log('done!')
+    );
+```
+
 To handle requests:
 ```js
 // SUCCESS REPLY
