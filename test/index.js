@@ -24,14 +24,14 @@ describe('RxMQ', () => {
         should(Rxmq.channel('test').testGlobalMethod()).equal(true);
     });
 
-    describe('#channel()', () => {
+    it('should create new channel', () => {
         const channel = Rxmq.channel('test');
+        should.exist(channel);
+    });
 
-        it('should return new channel', () => {
-            should.exist(channel);
-        });
-
+    describe('#channel()', () => {
         it('should register channel plugin', () => {
+            const channel = Rxmq.channel('test');
             const testPlugin = {
                 testMethod() {
                     return true;
@@ -41,67 +41,22 @@ describe('RxMQ', () => {
             should(channel.testMethod()).equal(true);
         });
 
-        const testOneToMany = (done, sub, topic) => {
-            let called = 0;
-            const testMessage = 'test message';
-            const subj = channel.subject(topic);
-            const onNext = (it) => {
-                should(it).equal(testMessage);
-                called++;
-                if (called === 2) {
-                    done();
-                }
-            };
-
-            sub.subscribe(onNext);
-            Rxmq.subscribe({channel: 'test', topic, onNext});
-            channel.onNext({topic, data: testMessage});
-            // cleanup
-            subj.onCompleted();
-        };
-
         it('should create and subscribe to one-to-many subscription', (done) => {
-            const topic = 'oneToMany';
-            const sub = channel.observe(topic);
+            const channel = Rxmq.channel('test');
+            const subj = channel.subject('oneToMany');
 
-            testOneToMany(done, sub, topic);
-        });
-
-        it('should create and subscribe to one-to-many subscription from global object', (done) => {
-            const topic = 'oneToManyGlobal';
-            const sub = Rxmq.observe({channel: 'test', topic});
-
-            testOneToMany(done, sub, topic);
-        });
-
-        it('should publish using Rxmq.onNext method', (done) => {
-            const topic = 'oneToManyGlobalPublish';
-            const channelName = 'test';
-            const sub = Rxmq.observe({channel: channelName, topic});
-            const testData = 'testGlobalPush';
-            sub.subscribe((data) => {
-                should(data).equal(testData);
+            // test data
+            const testMessage = 'test message';
+            // subscribe
+            const sub = subj.subscribe((it) => {
+                should(it).equal(testMessage);
+                sub.dispose();
                 done();
             });
-
-            Rxmq.onNext({channel: channelName, topic, data: testData});
-        });
-
-        it('should publish using Channel.onNext method', (done) => {
-            const topic = 'oneToManyChannelPublish';
-            const channelName = 'test';
-            const sub = Rxmq.observe({channel: channelName, topic});
-            const testData = 'testGlobalPush';
-            sub.subscribe((data) => {
-                should(data).equal(testData);
-                done();
-            });
-
-            Rxmq.channel(channelName).onNext({topic, data: testData});
+            subj.onNext(testMessage);
         });
 
         it('should publish to multiple channels', (done) => {
-            const topic = 'test.one';
             const multiChannel = Rxmq.channel('multitest');
             const testData = 'testGlobalPush';
             let called = 0;
@@ -114,10 +69,9 @@ describe('RxMQ', () => {
             };
             multiChannel.observe('test.#').subscribe(onData);
             multiChannel.observe('test.*').subscribe(onData);
-            multiChannel.observe(topic).subscribe(onData);
-
-            multiChannel.subject(topic).onNext(testData);
-            multiChannel.subject(topic).onCompleted();
+            multiChannel.observe('test.one').subscribe(onData);
+            // send
+            multiChannel.subject('test.one').onNext(testData);
         });
 
         /*
@@ -125,6 +79,7 @@ describe('RxMQ', () => {
          */
         it('should create one-to-one subscription', (done) => {
             const topic = 'request-reply';
+            const channel = Rxmq.channel('request');
             const rrSub = channel.subject(topic);
             const testRequest = 'test request';
             const testReply = 'test reply';
@@ -141,26 +96,9 @@ describe('RxMQ', () => {
                 });
         });
 
-        it('should create one-to-one subscription with topic name as first param', (done) => {
-            const topic = 'request-reply';
-            const rrSub = channel.subject(topic);
-            const testRequest = 'test request';
-            const testReply = 'test reply';
-
-            rrSub.subscribe(({data, replySubject}) => {
-                should(data).equal(testRequest);
-                replySubject.onNext(testReply);
-                replySubject.onCompleted();
-            });
-            channel.request(topic, {data: testRequest})
-                .subscribe((replyData) => {
-                    should(replyData).equal(testReply);
-                    done();
-                });
-        });
-
         it('should create one-to-one subscription with custom reply subject', (done) => {
             const topic = 'custom-request-reply';
+            const channel = Rxmq.channel('request');
             const rrSub = channel.subject(topic);
             const testRequest = 'test request';
             const testReply = ['test reply', 'test reply 2', 'test reply 3'];
@@ -171,7 +109,7 @@ describe('RxMQ', () => {
             });
             // test reply
             const fullReply = [];
-            channel.request(topic, {data: testRequest, DefaultSubject: Rx.Subject})
+            channel.request({topic, data: testRequest, Subject: Rx.Subject})
                 .subscribe(
                     (replyData) => {
                         fullReply.push(replyData);
@@ -184,21 +122,6 @@ describe('RxMQ', () => {
                         done();
                     }
                 );
-        });
-
-        /*
-         * Method overrides test
-         */
-        it('should subscribe using channel.subscribe(topic, {onNext}) method alias', (done) => {
-            const topic = 'oneToManyAliasPublish';
-            const sub = channel.observe(topic);
-            const testData = 'testGlobalPush';
-            sub.subscribe((data) => {
-                should(data).equal(testData);
-                done();
-            });
-
-            channel.onNext(topic, {data: testData});
         });
     });
 });
