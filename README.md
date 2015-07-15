@@ -19,9 +19,7 @@ On top of that, all used objects are parts of reactive extensions which allows d
 If you want to subscribe to an observable, you tell Rxmq what channel and topic to subscribe to and a set of functions to be invoked (taken from [Rx.Observable.subscribe](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/operators/subscribe.md)):
 
 ```js
-    const subscription = Rxmq.subscribe({
-        channel: 'posts',
-        topic: 'post.add',
+    const subscription = Rxmq.channel('posts').observe('post.add').subscribe(
         // following methods are same as for Rx.Observable.subscribe
         onNext(data) {
             // handle new data ...
@@ -29,19 +27,15 @@ If you want to subscribe to an observable, you tell Rxmq what channel and topic 
         onError(error) {
             // handle error ...
         }
-    });
+    );
 ```
 
 The publisher might do something similar to this:
 
 ```js
-    Rxmq.onNext({
-        channel: 'posts',
-        topic: 'post.add',
-        data: {
-            title: 'Woo-hoo, first post!',
-            text: 'My lengthy post here'
-        }
+    Rxmq.channel('posts').subject('post.add').onNext({
+        title: 'Woo-hoo, first post!',
+        text: 'My lengthy post here'
     });
 ```
 
@@ -56,35 +50,15 @@ Same as for `Rxmq.js`, it's possible to get a more concise API if you want to ha
 
 ```js
     const channel = Rxmq.channel('posts');
+    const subject = channel.subject('posta.add')
 
-    const subscription = channel.subscribe({
-        topic: 'post.add',
+    const subscription = subject.subscribe(
         onNext(data) {
             /*do stuff with data */
         }
-    });
+    );
 
-    channel.onNext({
-        topic: 'post.add',
-        data: {
-            title: 'Woo-hoo, first post!',
-            text: 'My lengthy post here'
-        }
-    });
-```
-
-You can also go even deeper and get a specific instance for topics, like so:
-
-```js
-    const channel = Rxmq.channel('posts');
-    const topic = channel.subject('post.add');
-
-    const subscription = channel.observe('post.add')
-        .subscribe(onNext(data) {
-            /*do stuff with data */
-        });
-
-    topic.onNext({
+    subject.onNext({
         title: 'Woo-hoo, first post!',
         text: 'My lengthy post here'
     });
@@ -110,36 +84,17 @@ Here are four examples of using Rxmq.
 const channel = Rxmq.channel();
 
 // subscribe to 'name.change' topics
-const subscription = channel.subscribe({
-    topic: 'name.change',
+const subscription = channel.observe('name.change').subscribe(
     onNext(data) {
         $('#example1').html('Name: ' + data.name);
     }
-});
+);
 
 // And someone publishes a name change:
-channel.onNext({topic: 'name.change', data: {name: 'Dr. Who'});
+channel.subject('name.change').onNext({name: 'Dr. Who'});
 
 // To dispose, just trigger the dispose() method:
 subscription.dispose();
-
-// Rxmq also provides a top-level ability to subscribe/publish
-// used primarily when you don't need to hang onto a channel instance:
-const anotherSub = Rxmq.subscribe({
-    channel: 'MyChannel',
-    topic: 'name.change',
-    onNext(data) {
-        $('#example1').html('Name: ' + data.name);
-    }
-});
-
-Rxmq.onNext({
-    channel: 'MyChannel',
-    topic: 'name.change',
-    data: {
-        name: 'Dr. Who'
-    }
-});
 ```
 
 ### Subscribing to a wildcard topic using *
@@ -148,14 +103,13 @@ The `*` symbol represents 'one word' in a topic (i.e - the text between two peri
 By subscribing to `'*.changed'`, the binding will match `name.changed` & `location.changed` but *not* `changed.companion`.
 
 ```js
-const chgSubscription = channel.subscribe({
-    topic: '*.changed',
+const chgSubscription = channel.observe('*.changed').subscribe(
     onNext(data) {
         $('<li>' + data.type + ' changed: ' + data.value + '</li>').appendTo('#example2');
     }
-});
-channel.onNext({topic: 'name.changed', data: {type: 'Name', value: 'John Smith'}});
-channel.onNext({topic: 'location.changed', data: {type: 'Location', value: 'Early 20th Century England'}});
+);
+channel.subject('name.changed').onNext({type: 'Name', value: 'John Smith'});
+channel.subject('location.changed').onNext({type: 'Location', value: 'Early 20th Century England'});
 chgSubscription.dispose();
 ```
 
@@ -164,18 +118,17 @@ chgSubscription.dispose();
 The `#` symbol represents 0-n number of characters/words in a topic string. By subscribing to `'DrWho.#.Changed'`, the binding will match `DrWho.NinthDoctor.Companion.Changed` & `DrWho.Location.Changed` but *not* `Changed`.
 
 ```javascript
-const starSubscription = channel.subscribe({
-    topic: 'DrWho.#.Changed',
+const starSubscription = channel.observe('DrWho.#.Changed').subscribe(
     onNext(data) {
         $('<li>' + data.type + ' Changed: ' + data.value + '</li>').appendTo('#example3');
     }
-});
-channel.onNext({topic: 'DrWho.NinthDoctor.Companion.Changed', data: {type: 'Companion Name', value: 'Rose'}});
-channel.onNext({topic: 'DrWho.TenthDoctor.Companion.Changed', data: {type: 'Companion Name', value: 'Martha'}});
-channel.onNext({topic: 'DrWho.Eleventh.Companion.Changed', data: {type: 'Companion Name', value: 'Amy'}});
-channel.onNext({topic: 'DrWho.Location.Changed', data: {type: 'Location', value: 'The Library'}});
-channel.onNext({topic: 'TheMaster.DrumBeat.Changed', data: {type: 'DrumBeat', value: 'This won\'t trigger any subscriptions'}});
-channel.onNext({topic: 'Changed', data: {type: 'Useless', value: 'This won\'t trigger any subscriptions either'}});
+);
+channel.subject('DrWho.NinthDoctor.Companion.Changed').onNext({type: 'Companion Name', value: 'Rose'});
+channel.subject('DrWho.TenthDoctor.Companion.Changed').onNext({type: 'Companion Name', value: 'Martha'});
+channel.subject('DrWho.Eleventh.Companion.Changed').onNext({type: 'Companion Name', value: 'Amy'});
+channel.subject('DrWho.Location.Changed').onNext({type: 'Location', value: 'The Library'});
+channel.subject('TheMaster.DrumBeat.Changed').onNext({type: 'DrumBeat', value: 'This won\'t trigger any subscriptions'});
+channel.subject('Changed').onNext({type: 'Useless', value: 'This won\'t trigger any subscriptions either'});
 starSubscription.dispose();
 ```
 
@@ -191,12 +144,12 @@ const dupSubscription = dupChannel.observe('WeepingAngel.#')
     });
 // demonstrating multiple channels per topic being used
 // You can do it this way if you like, but the example above has nicer syntax (and *much* less overhead)
-dupChannel.onNext({topic: 'WeepingAngel.DontBlink', data: {value: 'Don\'t Blink'}});
-dupChannel.onNext({topic: 'WeepingAngel.DontBlink', data: {value: 'Don\'t Blink'}});
-dupChannel.onNext({topic: 'WeepingAngel.DontEvenBlink', data: {value: 'Don\'t Even Blink'}});
-dupChannel.onNext({topic: 'WeepingAngel.DontBlink', data: {value: 'Don\'t Close Your Eyes'}});
-dupChannel.onNext({topic: 'WeepingAngel.DontBlink', data: {value: 'Don\'t Blink'}});
-dupChannel.onNext({topic: 'WeepingAngel.DontBlink', data: {value: 'Don\'t Blink'}});
+dupChannel.subject('WeepingAngel.DontBlink').onNext({value: 'Don\'t Blink'});
+dupChannel.subject('WeepingAngel.DontBlink').onNext({value: 'Don\'t Blink'});
+dupChannel.subject('WeepingAngel.DontEvenBlink').onNext({value: 'Don\'t Even Blink'});
+dupChannel.subject('WeepingAngel.DontBlink').onNext({value: 'Don\'t Close Your Eyes'});
+dupChannel.subject('WeepingAngel.DontBlink').onNext({value: 'Don\'t Blink'});
+dupChannel.subject('WeepingAngel.DontBlink').onNext({value: 'Don\'t Blink'});
 dupSubscription.dispose();
 ```
 
@@ -206,7 +159,7 @@ To make a request, you can do the following:
 ```js
 const channel = rxmq.channel('user');
 
-channel.request('last.login', {data: {userId: 8675309}})
+channel.request({topic: 'last.login', data: {userId: 8675309}})
     .timeout(2000)
     .subscribe(
         (data) => console.log(`Last login for userId: ${data.userId} occurred on ${data.time}`),
@@ -219,7 +172,7 @@ It's also possible to make a request with custom reply subject, like so:
 ```js
 const channel = rxmq.channel('user');
 
-channel.request('posts.all', {data: {userId: 8675309}, DefaultSubject: Rx.Subject})
+channel.request({topic: 'posts.all', data: {userId: 8675309}, Subject: Rx.Subject})
     .subscribe(
         (post) => console.log(`Got post: ${post.id}`),
         (err) => console.error('Uh oh! Error:', err),
@@ -230,7 +183,7 @@ channel.request('posts.all', {data: {userId: 8675309}, DefaultSubject: Rx.Subjec
 To handle requests:
 ```js
 // SUCCESS REPLY
-const subscription = channel.subscribe('last.login', ({data, replySubject}) => {
+const subscription = channel.observe('last.login').subscribe(({data, replySubject}) => {
     const result = getLoginInfo(data.userId);
     // `replySubject` is just a Rx.AsyncSubject
     replySubject.onNext({time: result.time, userId: data.userId});
@@ -238,7 +191,7 @@ const subscription = channel.subscribe('last.login', ({data, replySubject}) => {
 });
 
 // ERROR REPLY
-const subscription = channel.subscribe('last.login', ({data, replySubject}) => {
+const subscription = channel.observe('last.login').subscribe(({data, replySubject}) => {
     const result = getLoginInfo(data.userId);
     // `replySubject` is just a Rx.AsyncSubject
     replySubject.onError(new Error('No such user'));
@@ -259,6 +212,10 @@ topic.multicast(ajax).connect();
 ## More References
 
 Please visit the [rxmq.js documentation](http://rxmqjs.github.io/rxmq.js/) website for full API documentation.
+
+## Available plugins
+
+- [rxmq.aliases](https://github.com/rxmqjs/rxmq.aliases) - a plugin that provides bus- and channel-level convenience aliases.
 
 ## I still need help!
 
