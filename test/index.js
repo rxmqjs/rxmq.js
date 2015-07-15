@@ -41,6 +41,25 @@ describe('RxMQ', () => {
             should(channel.testMethod()).equal(true);
         });
 
+        it('should create new subject with custom Rx.Subject', (done) => {
+            const channel = Rxmq.channel('customSubject');
+            const subj = channel.subject('test', {Subject: Rx.Subject});
+            let called = 0;
+            subj.subscribe(
+                () => {
+                    called++;
+                },
+                (e) => { throw e; },
+                () => {
+                    should(called).equal(2);
+                    done();
+                }
+            );
+            subj.onNext(1);
+            subj.onNext(2);
+            subj.onCompleted();
+        });
+
         it('should create and subscribe to one-to-many subscription', (done) => {
             const channel = Rxmq.channel('test');
             const subj = channel.subject('oneToMany');

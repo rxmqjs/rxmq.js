@@ -55,10 +55,10 @@ class Channel {
      * const channel = rxmq.channel('test');
      * const subject = channel.subject('test.topic');
      */
-    subject(name) {
+    subject(name, {Subject = EndlessSubject} = {}) {
         let s = this.utils.findSubjectByName(this.subjects, name);
         if (!s) {
-            s = new EndlessSubject();
+            s = new Subject();
             s.name = name;
             this.subjects.push(s);
             this.channelBus.onNext(s);
