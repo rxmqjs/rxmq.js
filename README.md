@@ -19,12 +19,13 @@ On top of that, all used objects are parts of reactive extensions which allows d
 If you want to subscribe to an observable, you tell Rxmq what channel and topic to subscribe to and a set of functions to be invoked (taken from [Rx.Observable.subscribe](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/operators/subscribe.md)):
 
 ```js
-    const subscription = Rxmq.channel('posts').observe('post.add').subscribe(
+    const subscription = Rxmq.channel('posts').observe('post.add')
+    .subscribe(
         // following methods are same as for Rx.Observable.subscribe
-        onNext(data) {
+        (data) => {
             // handle new data ...
         },
-        onError(error) {
+        (error) => {
             // handle error ...
         }
     );
