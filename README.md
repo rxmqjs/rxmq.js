@@ -46,17 +46,15 @@ As well explained by [postal.js readme section on channels](https://github.com/p
 In case of Rxmq.js each topic is represented by a slightly tweaked [Rx.Subject](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/subjects/subject.md) (specifically - it never triggers `onCompleted()`, so you can keep sending your data all the time).
 Using channel- and topic-oriented messaging instead of traditional JavaScript approaches like callbacks or promises enables you to separate components (or modules) communication by context.
 
-Same as for `Rxmq.js`, it's possible to get a more concise API if you want to hang onto a `Channel` instance - which can be really convenient while working with a specific channel (e.g. inside of a specific component):
+It's possible to get a more concise API if you want to hang onto a `Channel` - which can be really convenient while working with a specific channel (e.g. inside of a specific component):
 
 ```js
     const channel = Rxmq.channel('posts');
-    const subject = channel.subject('posta.add')
+    const subject = channel.subject('post.add');
 
-    const subscription = subject.subscribe(
-        onNext(data) {
-            /*do stuff with data */
-        }
-    );
+    const subscription = subject.subscribe((data) => {
+        /*do stuff with data */
+    });
 
     subject.onNext({
         title: 'Woo-hoo, first post!',
@@ -84,11 +82,10 @@ Here are four examples of using Rxmq.
 const channel = Rxmq.channel();
 
 // subscribe to 'name.change' topics
-const subscription = channel.observe('name.change').subscribe(
-    onNext(data) {
-        $('#example1').html('Name: ' + data.name);
-    }
-);
+const subscription = channel.observe('name.change')
+.subscribe((data) => {
+    $('#example1').html('Name: ' + data.name);
+});
 
 // And someone publishes a name change:
 channel.subject('name.change').onNext({name: 'Dr. Who'});
@@ -103,11 +100,10 @@ The `*` symbol represents 'one word' in a topic (i.e - the text between two peri
 By subscribing to `'*.changed'`, the binding will match `name.changed` & `location.changed` but *not* `changed.companion`.
 
 ```js
-const chgSubscription = channel.observe('*.changed').subscribe(
-    onNext(data) {
-        $('<li>' + data.type + ' changed: ' + data.value + '</li>').appendTo('#example2');
-    }
-);
+const chgSubscription = channel.observe('*.changed')
+.subscribe((data) => {
+    $('<li>' + data.type + ' changed: ' + data.value + '</li>').appendTo('#example2');
+});
 channel.subject('name.changed').onNext({type: 'Name', value: 'John Smith'});
 channel.subject('location.changed').onNext({type: 'Location', value: 'Early 20th Century England'});
 chgSubscription.dispose();
@@ -118,11 +114,10 @@ chgSubscription.dispose();
 The `#` symbol represents 0-n number of characters/words in a topic string. By subscribing to `'DrWho.#.Changed'`, the binding will match `DrWho.NinthDoctor.Companion.Changed` & `DrWho.Location.Changed` but *not* `Changed`.
 
 ```javascript
-const starSubscription = channel.observe('DrWho.#.Changed').subscribe(
-    onNext(data) {
-        $('<li>' + data.type + ' Changed: ' + data.value + '</li>').appendTo('#example3');
-    }
-);
+const starSubscription = channel.observe('DrWho.#.Changed')
+.subscribe((data) => {
+    $('<li>' + data.type + ' Changed: ' + data.value + '</li>').appendTo('#example3');
+});
 channel.subject('DrWho.NinthDoctor.Companion.Changed').onNext({type: 'Companion Name', value: 'Rose'});
 channel.subject('DrWho.TenthDoctor.Companion.Changed').onNext({type: 'Companion Name', value: 'Martha'});
 channel.subject('DrWho.Eleventh.Companion.Changed').onNext({type: 'Companion Name', value: 'Amy'});
