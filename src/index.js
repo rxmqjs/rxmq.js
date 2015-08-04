@@ -1,4 +1,5 @@
 import Channel from './channel';
+import Rxmq from './rxmq';
 
 export {Channel};
-export * from './rxmq';
+export default Rxmq;
