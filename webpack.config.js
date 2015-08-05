@@ -1,3 +1,4 @@
+/* eslint es6: false */
 var path = require('path');
 var fs = require('fs');
 
