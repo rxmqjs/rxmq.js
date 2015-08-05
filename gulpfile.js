@@ -1,1 +1,4 @@
-var gulp = require('turris-gulp-tasks')(require('./buildConfig.js'));
+// enable babel
+require('babel/register');
+// require gulp entry
+require('./gulp');

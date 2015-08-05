@@ -1,27 +1,28 @@
-/* global describe, it */
-import should from 'should';
+import test from 'tape';
 import {compareTopics} from '../src/utils';
 
-describe('Utils', () => {
-    describe('#Topic Comparator', () => {
-        it('should correctly compare topics', () => {
-            should(compareTopics('test', 'test')).equal(true);
-            should(compareTopics('test.one', 'test.#')).equal(true);
-            should(compareTopics('test.one.two', 'test.#')).equal(true);
-            should(compareTopics('test.one.two', 'test.#.two')).equal(true);
-            should(compareTopics('test.one', 'test.*')).equal(true);
-            should(compareTopics('test.two', 'test.#.two')).equal(true);
-            should(compareTopics('test.one.two', 'test.*')).equal(true);
-            should(compareTopics('test.one.two', '*.one')).equal(true);
-            should(compareTopics('test.one.two', '*')).equal(true);
-            should(compareTopics('test.one.two', '#')).equal(true);
+test('Utils', (describe) => {
+    describe.test('> Topic Comparator', (it) => {
+        it.test('# should correctly compare topics', (t) => {
+            t.equal(compareTopics('test', 'test'), true);
+            t.equal(compareTopics('test.one', 'test.#'), true);
+            t.equal(compareTopics('test.one.two', 'test.#'), true);
+            t.equal(compareTopics('test.one.two', 'test.#.two'), true);
+            t.equal(compareTopics('test.one', 'test.*'), true);
+            t.equal(compareTopics('test.two', 'test.#.two'), true);
+            t.equal(compareTopics('test.one.two', 'test.*'), true);
+            t.equal(compareTopics('test.one.two', '*.one'), true);
+            t.equal(compareTopics('test.one.two', '*'), true);
+            t.equal(compareTopics('test.one.two', '#'), true);
+            t.end();
         });
 
-        it('should correctly fail topics', () => {
-            should(compareTopics('test.one', 'test')).equal(false);
-            should(compareTopics('test.one', 'test.#.two')).equal(false);
-            should(compareTopics('test.two', 'test.*.two')).equal(false);
-            should(compareTopics('test.one.two', '*.two')).equal(false);
+        it.test('# should correctly fail topics', (t) => {
+            t.equal(compareTopics('test.one', 'test'), false);
+            t.equal(compareTopics('test.one', 'test.#.two'), false);
+            t.equal(compareTopics('test.two', 'test.*.two'), false);
+            t.equal(compareTopics('test.one.two', '*.two'), false);
+            t.end();
         });
     });
 });
