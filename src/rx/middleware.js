@@ -1,4 +1,5 @@
 import Rx from 'rx';
+import generateUuid from '../utils/generateUuid';
 
 /**
  * Middleware manager class.
@@ -18,7 +19,7 @@ class Middleware {
          */
         this.middleware = [];
         /**
-         * Array of deleted middleware names
+         * Array of deleted middleware ids
          * @private
          * @type {Array}
          */
@@ -38,7 +39,7 @@ class Middleware {
      */
     add(fn) {
         const m = {
-            name: 'middleware_' + this.middleware.length,
+            id: generateUuid(),
             fn,
         };
         this.middleware.push(m);
@@ -49,11 +50,11 @@ class Middleware {
     /**
      * Removes existing middleware from the applied list
      * @param  {Object}  opts       options
-     * @param  {String}  opts.name  Name of the middleware to remove
+     * @param  {String}  opts.id    Id of the middleware to remove
      * @return {void}
      */
-    remove({name}) {
-        this.deletedMiddleware.push(name);
+    remove({id}) {
+        this.deletedMiddleware.push(id);
     }
 
     /**
@@ -73,7 +74,7 @@ class Middleware {
      * @return {Rx.Observable}   Rx.Observable stream of currently used middleware
      */
     list() {
-        return this.middlewareStream.filter(({name}) => this.deletedMiddleware.indexOf(name) === -1);
+        return this.middlewareStream.filter(({id}) => this.deletedMiddleware.indexOf(id) === -1);
     }
 
     /**
@@ -83,7 +84,7 @@ class Middleware {
      */
     transform(val) {
         return this.middlewareStream
-                    .filter(({name}) => this.deletedMiddleware.indexOf(name) === -1)
+                    .filter(({id}) => this.deletedMiddleware.indexOf(id) === -1)
                     .startWith(val)
                     .scan((acc, {fn}) => fn(acc))
                     .throttle();
