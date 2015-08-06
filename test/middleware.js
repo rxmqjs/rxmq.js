@@ -77,7 +77,7 @@ test('Rxmq middleware', (it) => {
         mid.clear();
         mid.add({name: 'test', fn: () => {}});
         mid.add({name: 'otherTest', fn: () => {}});
-        mid.del({name: 'test'});
+        mid.remove({name: 'test'});
         mid.list()
             .subscribe((middleware) => {
                 t.equal(middleware.name, 'otherTest');
