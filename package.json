@@ -15,6 +15,10 @@
     "Tim Ermilov <yamalight@gmail.com> (http://codezen.net)",
     "Denis Kuchelev (https://github.com/kuchelev)"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rxmqjs/rxmq.js"
+  },
   "license": "MIT",
   "dependencies": {
     "rx": "^3.0.0"
