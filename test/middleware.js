@@ -29,18 +29,6 @@ test('Rxmq middleware', (it) => {
         channel.subject(topic).onNext(testData);
     });
 
-    it.test('# should clean middleware', (t) => {
-        mid.clear();
-        mid.list()
-            .startWith(0)
-            .scan((acc, val) => acc + val)
-            .throttle()
-            .subscribe((all) => {
-                t.equal(all, 0);
-                t.end();
-            });
-    });
-
     it.test('# should use request middleware', (t) => {
         const rrTopic = 'request-reply';
         const rrSub = channel.subject(rrTopic);
@@ -69,6 +57,30 @@ test('Rxmq middleware', (it) => {
         channel.request({topic: rrTopic, data: testRequest})
             .subscribe((replyData) => {
                 t.equal(replyData, testReply + suffix);
+                t.end();
+            });
+    });
+
+    it.test('# should clean middleware', (t) => {
+        mid.clear();
+        mid.list()
+            .startWith(0)
+            .scan((acc) => acc + 1)
+            .throttle()
+            .subscribe((all) => {
+                t.equal(all, 0);
+                t.end();
+            });
+    });
+
+    it.test('# should delete one middleware', (t) => {
+        mid.clear();
+        mid.add({name: 'test', fn: () => {}});
+        mid.add({name: 'otherTest', fn: () => {}});
+        mid.del({name: 'test'});
+        mid.list()
+            .subscribe((middleware) => {
+                t.equal(middleware.name, 'otherTest');
                 t.end();
             });
     });
