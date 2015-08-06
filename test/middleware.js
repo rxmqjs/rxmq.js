@@ -17,9 +17,7 @@ test('Rxmq middleware', (it) => {
         const testData = 'testGlobalPush';
         const sub = channel.subject(topic);
 
-        sub.middleware.add({
-            fn: (value) => value + suffix
-        });
+        sub.middleware.add((value) => value + suffix);
 
         sub.subscribe((val) => {
             t.equals(val, testData + suffix);
@@ -39,15 +37,11 @@ test('Rxmq middleware', (it) => {
         const suffix = '_appended';
 
         // normal
-        rrMid.add({
-            fn: ({data, replySubject}) => {
-                return {data: data + suffix, replySubject};
-            },
+        rrMid.add(({data, replySubject}) => {
+            return {data: data + suffix, replySubject};
         });
         // reply
-        rrReplyMid.add({
-            fn: (val) => val + suffix,
-        });
+        rrReplyMid.add((val) => val + suffix);
 
         rrSub.subscribe(({data, replySubject}) => {
             t.equal(data, testRequest + suffix);
@@ -75,12 +69,12 @@ test('Rxmq middleware', (it) => {
 
     it.test('# should delete one middleware', (t) => {
         mid.clear();
-        mid.add({name: 'test', fn: () => {}});
-        mid.add({name: 'otherTest', fn: () => {}});
-        mid.remove({name: 'test'});
+        const m1 = mid.add(() => {});
+        const m2 = mid.add(() => {});
+        mid.remove(m1);
         mid.list()
             .subscribe((middleware) => {
-                t.equal(middleware.name, 'otherTest');
+                t.equal(middleware.name, m2.name);
                 t.end();
             });
     });

@@ -33,17 +33,17 @@ class Middleware {
 
     /**
      * Adds a new middleware to the current set
-     * @param {Object}     opts       options
-     * @param {String}     opts.name  Name of the middleware, can be used to delete it later
-     * @param {Function}   opts.fn    Function for the middleware, applied for data transformation
+     * @param {Function}   fn    Function for the middleware, applied for data transformation
      * @return {void}
      */
-    add({name, fn}) {
-        if (!name) {
-            name = 'middleware_' + this.middleware.length;
-        }
-        this.middleware.push({name, fn});
-        this.middlewareStream.onNext({name, fn});
+    add(fn) {
+        const m = {
+            name: 'middleware_' + this.middleware.length,
+            fn,
+        };
+        this.middleware.push(m);
+        this.middlewareStream.onNext(m);
+        return m;
     }
 
     /**

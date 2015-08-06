@@ -213,12 +213,11 @@ This can be useful in cases when you want to modify the data going to subscriber
 To use topic middleware, you can do the following:
 ```js
 const sub = channel.subject('test');
-sub.middleware.add({
-    name: 'test_middleware', // can be used to delete middleware later
-    fn: (value) => value + '_middleware',
-});
+const m = sub.middleware.add((value) => value + '_middleware');
 sub.subscribe((val) => {
     console.log(val); // will output "string_middleware"
+    // you can remove middleware using reference
+    sub.middleware.remove(m);
 });
 sub.onNext('string');
 ```
@@ -227,17 +226,11 @@ If you want to use middleware that should be applied to `replySubject`, you can 
 ```js
 const sub = channel.subject('test');
 // this middleware will apply to normal subject() subscriptions
-sub.middleware.add({
-    name: 'test_middleware',
-    fn: ({data, replySubject}) => {
-        return {data: data + '_modified', replySubject};
-    },
+sub.middleware.add(({data, replySubject}) => {
+    return {data: data + '_modified', replySubject};
 });
 // this middleware will apply to all replySubject subscriptions, i.e. when request().subscribe() is called
-sub.replyMiddleware.add({
-    name: 'reply_test_middleware',
-    fn: (val) => val + '_reply_mod',
-});
+sub.replyMiddleware.add((val) => val + '_reply_mod');
 sub.subscribe(({data, replySubject}) => {
     console.log(data); // will output "request_modified"
     replySubject.onNext('replyData');
