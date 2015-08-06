@@ -35,7 +35,7 @@ class Middleware {
     /**
      * Adds a new middleware to the current set
      * @param {Function}   fn    Function for the middleware, applied for data transformation
-     * @return {void}
+     * @return {Object}          Middlware object
      */
     add(fn) {
         const m = {
@@ -49,7 +49,7 @@ class Middleware {
 
     /**
      * Removes existing middleware from the applied list
-     * @param  {Object}  opts       options
+     * @param  {Object}  opts       Middlware object
      * @param  {String}  opts.id    Id of the middleware to remove
      * @return {void}
      */
