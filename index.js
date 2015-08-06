@@ -1,4 +1,4 @@
-import RxMQ, {Channel} from './src';
+import RxMQ from './src';
 
-export {RxMQ, Channel};
+export * from './src';
 export default new RxMQ();

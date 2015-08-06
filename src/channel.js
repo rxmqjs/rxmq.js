@@ -1,5 +1,5 @@
 import Rx from 'rx';
-import {EndlessSubject} from './rx';
+import {EndlessSubject, MiddlewareSubject, MiddlewareAsyncSubject} from './rx';
 import {findSubjectByName, compareTopics} from './utils';
 
 /**
@@ -48,14 +48,14 @@ class Channel {
     }
 
     /**
-     * Returns EndlessSubject representing given topic
-     * @param  {String}         name        Topic name
-     * @return {EndlessSubject}             EndlessSubject representing given topic
+     * Returns MiddlewareSubject representing given topic
+     * @param  {String}         name           Topic name
+     * @return {MiddlewareSubject}             MiddlewareSubject representing given topic
      * @example
      * const channel = rxmq.channel('test');
      * const subject = channel.subject('test.topic');
      */
-    subject(name, {Subject = EndlessSubject} = {}) {
+    subject(name, {Subject = MiddlewareSubject} = {}) {
         let s = this.utils.findSubjectByName(this.subjects, name);
         if (!s) {
             s = new Subject();
@@ -87,13 +87,13 @@ class Channel {
     }
 
     /**
-     * Do a request that will be replied into returned Rx.AsyncSubject
+     * Do a request that will be replied into returned MiddlewareAsyncSubject
      * Alias for '.request()' that uses single object as params
-     * @param  {Object}      options                   Request options
-     * @param  {String}      options.topic             Topic name
-     * @param  {Any}         options.data              Request data
-     * @param  {Object}      options.DefaultSubject    Rx.Subject to be used for response, defaults to Rx.AsyncSubject
-     * @return {Rx.AsyncSubject}                       AsyncSubject that will dispatch the response
+     * @param  {Object}  options                   Request options
+     * @param  {String}  options.topic             Topic name
+     * @param  {Any}     options.data              Request data
+     * @param  {Object}  options.DefaultSubject    Subject to be used for response, defaults to MiddlewareAsyncSubject
+     * @return {MiddlewareAsyncSubject}            AsyncSubject that will dispatch the response
      * @example
      * const channel = rxmq.channel('test');
      * channel.requestTo({
@@ -103,13 +103,16 @@ class Channel {
      *     // handle response
      * });
      */
-    request({topic, data, Subject = Rx.AsyncSubject}) {
+    request({topic, data, Subject = MiddlewareAsyncSubject}) {
         const subj = this.utils.findSubjectByName(this.subjects, topic);
         if (!subj) {
             return Rx.Observable.never();
         }
 
+        // create reply subject
         const replySubject = new Subject();
+        // assign stored middleware
+        replySubject.middleware = subj.replyMiddleware;
         subj.onNext({replySubject, data});
         return replySubject;
     }
