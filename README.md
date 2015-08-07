@@ -212,6 +212,7 @@ Please visit the [rxmq.js documentation](http://rxmqjs.github.io/rxmq.js/) websi
 ## Available plugins
 
 - [rxmq.aliases](https://github.com/rxmqjs/rxmq.aliases) - a plugin that provides bus- and channel-level convenience aliases.
+- [rxmq.middleware](https://github.com/rxmqjs/rxmq.middleware) - a plugin that adds support for topic-based middleware.
 
 ## I still need help!
 
