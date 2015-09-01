@@ -1,6 +1,6 @@
 {
   "name": "rxmq",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "JavaScript pub/sub library based on RxJS",
   "main": "es5/component.js",
   "es6": "index.js",
