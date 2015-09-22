@@ -1,5 +1,5 @@
 # The container definition we want to use for developing our app
-box: iojs
+box: nodesource/trusty
 
 dev:
   steps:
