@@ -1,4 +1,4 @@
 // load other test suites
-require('babel/register');
+require('babel-core/register');
 require('./rxmq');
 require('./utils');

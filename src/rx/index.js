@@ -1,1 +1,1 @@
-export * from './endlessSubject.js';
+export {EndlessSubject} from './endlessSubject.js';
