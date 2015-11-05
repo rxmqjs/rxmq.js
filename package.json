@@ -24,15 +24,15 @@
     "rx": "^4.0.6"
   },
   "devDependencies": {
-    "babel-core": "^6.0.14",
-    "babel-loader": "^6.0.0",
-    "babel-preset-es2015": "^6.0.12",
-    "esdoc": "^0.4.1",
+    "babel-core": "^6.1.2",
+    "babel-loader": "^6.0.1",
+    "babel-preset-es2015": "^6.1.2",
+    "esdoc": "^0.4.3",
     "faucet": "0.0.1",
     "gulp": "^3.9.0",
-    "gulp-util": "^3.0.6",
+    "gulp-util": "^3.0.7",
     "istanbul": "^0.4.0",
-    "tape": "^4.0.2",
-    "webpack": "^1.10.5"
+    "tape": "^4.2.2",
+    "webpack": "^1.12.2"
   }
 }

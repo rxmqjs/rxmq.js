@@ -11,7 +11,7 @@
 ## What is it?
 
 Rxmq.js is an in-memory message bus based on [reactive extensions](https://github.com/Reactive-Extensions/RxJS) - inspired by [postal.js](https://github.com/postaljs/postal.js) - written in JavaScript using ES6 and Babel.
-Rxmq.js runs equally good in the browser and on the server using node.js or io.js.
+Rxmq.js runs equally good in the browser and on the server using node.js.
 It provides a 'broker' that allows for creation of more sophisticated pub/sub implementations than what you usually find in event-style based libraries.
 On top of that, all used objects are parts of reactive extensions which allows doing a lot of cool things with them out of the box.
 
@@ -69,7 +69,7 @@ It's possible to get a more concise API if you want to hang onto a `Channel` - w
 Some of those are shamelessly taken from postal.js list :)
 
 * Rxmq is not an event emitter - it's not meant to be mixed into an instance. Instead, it's a stand alone 'broker' – a *message bus*.
-* Rxmq uses a slightly modified *Rx.Subject* to pass messages. This means you use all the cool features of [Rx.Observable](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md) and [Rx.Observer](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observer.md) while working on your messaging.
+* Rxmq uses a slightly modified *Rx.Subject* (it will never be completed or stopped by error) to pass messages. This means you use all the cool features of [Rx.Observable](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md) and [Rx.Observer](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observer.md) while working on your messaging.
 * Most 'event aggregator' libs are *single channel* - which can lead to event name collision, and reduce the performance of matching an event to the correct subscribers. Rxmq is *multi-channel*.
 * Rxmq built-in topic logic supports hierarchical wildcard topic bindings - supporting the same logic as topic bindings in the AMQP spec. And if you don't like that approach, you can easily provide your own bindings resolver.
 

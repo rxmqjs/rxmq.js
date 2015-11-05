@@ -85,6 +85,19 @@ test('RxMQ', (it) => {
             multiChannel.subject('test.one').onNext(testData);
         });
 
+        it.test('# should allow dispatching several errors', (t) => {
+            t.plan(4);
+            const subject = Rxmq.channel('mutlierror').subject('test');
+            subject.subscribe(
+                val => t.ok(val),
+                e => t.assert(e)
+            );
+            subject.onError(new Error('test'));
+            subject.onError(new Error('test 2'));
+            subject.onError(new Error('test 3'));
+            subject.onNext(true);
+        });
+
         /*
          * Request-response tests
          */
