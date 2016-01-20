@@ -1,5 +1,5 @@
 import Rx from 'rx';
-import {EndlessSubject} from './rx';
+import {EndlessSubject, EndlessReplaySubject} from './rx';
 import {findSubjectByName, compareTopics} from './utils';
 
 /**
@@ -32,10 +32,10 @@ class Channel {
         this.subjects = [];
         /**
          * Channel bus
-         * @type {EndlessSubject}
+         * @type {EndlessReplaySubject}
          * @private
          */
-        this.channelBus = new EndlessSubject();
+        this.channelBus = new EndlessReplaySubject();
         /**
          * Permanent channel bus stream as Rx.Observable
          * @type {Rx.Observable}

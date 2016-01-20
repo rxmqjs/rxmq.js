@@ -85,7 +85,28 @@ test('RxMQ', (it) => {
             multiChannel.subject('test.one').onNext(testData);
         });
 
-        it.test('# should allow dispatching several errors', (t) => {
+        subit.test('# should publish to multiple channels', (t) => {
+            const resubChan = Rxmq.channel('resubtest');
+            const testData = ['test', 'test2'];
+            t.plan(2);
+            // generate first sub
+            const sub = resubChan.observe('test.#').subscribe(data => {
+                t.equal(data, testData[0]);
+                sub.dispose();
+
+                // listen for second output
+                resubChan.observe('test.#').subscribe(data2 => {
+                    t.equal(data2, testData[1]);
+                });
+
+                // trigger second output
+                resubChan.subject('test.one').onNext(testData[1]);
+            });
+            // send
+            resubChan.subject('test.one').onNext(testData[0]);
+        });
+
+        subit.test('# should allow dispatching several errors', (t) => {
             t.plan(4);
             const subject = Rxmq.channel('mutlierror').subject('test');
             subject.subscribe(
