@@ -21,14 +21,14 @@ const wpConfig = buildConfig.webpackConfig.production;
 
 // export initilizer
 export default (gulp) => {
-    gulp.task('build', function(callback) {
+    gulp.task('build', callback => {
         if (wpConfig.plugins) {
             wpConfig.plugins = wpConfig.plugins.concat(optimizations);
         } else {
             wpConfig.plugins = optimizations;
         }
         // run webpack
-        webpack(wpConfig, function(err, stats) {
+        webpack(wpConfig, (err, stats) => {
             if (err) {
                 throw new gutil.PluginError('webpack', err);
             }

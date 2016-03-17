@@ -4,7 +4,8 @@
  * @return {Regex}          Search regex
  * @private
  */
-const topicToRegex = (topic) => '^' + topic.split('.').reduce((result, segment, index, arr) => {
+const topicToRegex = (topic) => `^${topic.split('.')
+.reduce((result, segment, index, arr) => {
     let res = '';
     if (arr[index - 1]) {
         res = arr[index - 1] !== '#' ? '\\.\\b' : '\\b';
@@ -17,7 +18,7 @@ const topicToRegex = (topic) => '^' + topic.split('.').reduce((result, segment, 
         res += segment;
     }
     return result + res;
-}, '');
+}, '')}`;
 
 /**
  * Compares given topic with existing topic

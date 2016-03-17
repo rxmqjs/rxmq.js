@@ -92,7 +92,7 @@ class Channel {
      * @param  {Object}  options                   Request options
      * @param  {String}  options.topic             Topic name
      * @param  {Any}     options.data              Request data
-     * @param  {Object}  options.DefaultSubject    Subject to be used for response, defaults to Rx.AsyncSubject
+     * @param  {Object}  options.DefaultSubject    Response subject, defaults to Rx.AsyncSubject
      * @return {Rx.AsyncSubject}                   AsyncSubject that will dispatch the response
      * @example
      * const channel = rxmq.channel('test');

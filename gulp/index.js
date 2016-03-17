@@ -7,6 +7,6 @@ const blacklist = ['index.js'];
 const files = fs.readdirSync('./gulp').filter(f => blacklist.indexOf(f) === -1);
 
 // load custom tasks
-files.forEach(file => require('./' + file).default(gulp));
+files.forEach(file => require(`./${file}`).default(gulp));
 
 gulp.task('default', ['build']);

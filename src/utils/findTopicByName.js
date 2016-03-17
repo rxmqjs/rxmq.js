@@ -7,7 +7,7 @@
 const findSubjectByName = (subjects, name) => {
     const res = subjects.filter(s => s.name === name);
     if (!res || res.length < 1) {
-        return;
+        return undefined;
     }
 
     return res[0];

@@ -74,7 +74,9 @@ class Rxmq {
     registerChannelPlugin(plugin) {
         this.channelPlugins.push(plugin);
         for (const name in this.channels) {
-            this.channels[name].registerPlugin(plugin);
+            if (this.channels.hasOwnProperty(name)) {
+                this.channels[name].registerPlugin(plugin);
+            }
         }
     }
 }

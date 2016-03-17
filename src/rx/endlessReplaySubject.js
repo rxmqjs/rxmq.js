@@ -1,3 +1,4 @@
+/* eslint no-param-reassign: [2, {"props": false}] */
 import Rx from 'rx';
 
 /**

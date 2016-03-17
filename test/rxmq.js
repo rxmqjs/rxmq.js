@@ -7,7 +7,7 @@ test('RxMQ', (it) => {
         const testPlugin = {
             testMethod() {
                 return true;
-            }
+            },
         };
         Rxmq.registerPlugin(testPlugin);
         t.equal(Rxmq.testMethod(), true);
@@ -18,7 +18,7 @@ test('RxMQ', (it) => {
         const testChannelPlugin = {
             testGlobalMethod() {
                 return true;
-            }
+            },
         };
         Rxmq.registerChannelPlugin(testChannelPlugin);
         t.equal(Rxmq.channel('test').testGlobalMethod(), true);
@@ -37,7 +37,7 @@ test('RxMQ', (it) => {
             const testPlugin = {
                 testMethod() {
                     return true;
-                }
+                },
             };
             channel.registerPlugin(testPlugin);
             t.equal(channel.testMethod(), true);

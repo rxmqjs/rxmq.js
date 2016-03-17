@@ -1,13 +1,11 @@
-/* eslint es6: false */
-var path = require('path');
-var fs = require('fs');
+const path = require('path');
+const fs = require('fs');
 
-var nodeModules = {};
+const nodeModules = {};
 fs.readdirSync('node_modules')
-.filter(function(x) {
-    return ['.bin'].indexOf(x) === -1;
-}).forEach(function(mod) {
-    nodeModules[mod] = 'commonjs ' + mod;
+.filter(x => ['.bin'].indexOf(x) === -1)
+.forEach(mod => {
+    nodeModules[mod] = `commonjs ${mod}`;
 });
 
 module.exports = {
