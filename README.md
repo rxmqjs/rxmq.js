@@ -203,7 +203,7 @@ Make sure to *always* call `.onCompleted()` after you're done with dispatching y
 ```js
 const topic = channel.subject('ajax');
 const ajax = Rx.Observable.fromPromise($.ajax({url: 'http://...'}).promise());
-topic.multicast(ajax).connect();
+ajax.multicast(topic).connect();
 ```
 
 ## More References
