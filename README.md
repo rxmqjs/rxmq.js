@@ -20,6 +20,8 @@ On top of that, all used objects are parts of reactive extensions which allows d
 If you want to subscribe to an observable, you tell Rxmq what channel and topic to subscribe to and a set of functions to be invoked (taken from [Rx.Observable.subscribe](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/operators/subscribe.md)):
 
 ```js
+    import Rxmq from 'rxmq';
+
     const subscription = Rxmq.channel('posts').observe('post.add')
     .subscribe(
         // following methods are same as for Rx.Observable.subscribe
@@ -39,6 +41,12 @@ The publisher might do something similar to this:
         title: 'Woo-hoo, first post!',
         text: 'My lengthy post here'
     });
+```
+
+Note, that if you are not using ES6 modules (e.g. with babel), you will need to require Rxmq in the following way:
+
+```js
+    var Rxmq = require('rxmq').default;
 ```
 
 ### Channels? Topics?
