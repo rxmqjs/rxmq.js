@@ -1,6 +1,6 @@
 import Rx from 'rx';
-import {EndlessSubject, EndlessReplaySubject} from './rx';
-import {findSubjectByName, compareTopics} from './utils';
+import {EndlessSubject, EndlessReplaySubject} from './rx/index';
+import {findSubjectByName, compareTopics} from './utils/index';
 
 /**
  * Rxmq channel class
