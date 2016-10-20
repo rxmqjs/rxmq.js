@@ -1,4 +1,4 @@
-import Rx from 'rx';
+import Rx from 'rxjs/Rx';
 import {EndlessSubject, EndlessReplaySubject} from './rx/index';
 import {findSubjectByName, compareTopics} from './utils/index';
 
@@ -61,7 +61,7 @@ class Channel {
             s = new Subject();
             s.name = name;
             this.subjects.push(s);
-            this.channelBus.onNext(s);
+            this.channelBus.next(s);
         }
         return s;
     }
@@ -111,7 +111,7 @@ class Channel {
 
         // create reply subject
         const replySubject = new Subject();
-        subj.onNext({replySubject, data});
+        subj.next({replySubject, data});
         return replySubject;
     }
 

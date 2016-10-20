@@ -37,7 +37,7 @@ If you want to subscribe to an observable, you tell Rxmq what channel and topic 
 The publisher might do something similar to this:
 
 ```js
-    Rxmq.channel('posts').subject('post.add').onNext({
+    Rxmq.channel('posts').subject('post.add').next({
         title: 'Woo-hoo, first post!',
         text: 'My lengthy post here'
     });
@@ -53,7 +53,7 @@ Note, that if you are not using ES6 modules (e.g. with babel), you will need to 
 
 A channel is a logical partition of topics, more specifically - a set of topics.
 As well explained by [postal.js readme section on channels](https://github.com/postaljs/postal.js/blob/master/README.md), conceptually, it's like a dedicated highway for a specific set of communication.
-In case of Rxmq.js each topic is represented by a slightly tweaked [Rx.Subject](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/subjects/subject.md) (specifically - it never triggers `onCompleted()`, so you can keep sending your data all the time).
+In case of Rxmq.js each topic is represented by a slightly tweaked [Rx.Subject](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/subjects/subject.md) (specifically - it never triggers `complete()`, so you can keep sending your data all the time).
 Using channel- and topic-oriented messaging instead of traditional JavaScript approaches like callbacks or promises enables you to separate components (or modules) communication by context.
 
 It's possible to get a more concise API if you want to hang onto a `Channel` - which can be really convenient while working with a specific channel (e.g. inside of a specific component):
@@ -66,7 +66,7 @@ It's possible to get a more concise API if you want to hang onto a `Channel` - w
         /*do stuff with data */
     });
 
-    subject.onNext({
+    subject.next({
         title: 'Woo-hoo, first post!',
         text: 'My lengthy post here'
     });
@@ -98,10 +98,10 @@ const subscription = channel.observe('name.change')
 });
 
 // And someone publishes a name change:
-channel.subject('name.change').onNext({name: 'Dr. Who'});
+channel.subject('name.change').next({name: 'Dr. Who'});
 
-// To dispose, just trigger the dispose() method:
-subscription.dispose();
+// To dispose, just trigger the unsubscribe() method:
+subscription.unsubscribe();
 ```
 
 ### Subscribing to a wildcard topic using *
@@ -114,9 +114,9 @@ const chgSubscription = channel.observe('*.changed')
 .subscribe((data) => {
     $('<li>' + data.type + ' changed: ' + data.value + '</li>').appendTo('#example2');
 });
-channel.subject('name.changed').onNext({type: 'Name', value: 'John Smith'});
-channel.subject('location.changed').onNext({type: 'Location', value: 'Early 20th Century England'});
-chgSubscription.dispose();
+channel.subject('name.changed').next({type: 'Name', value: 'John Smith'});
+channel.subject('location.changed').next({type: 'Location', value: 'Early 20th Century England'});
+chgSubscription.unsubscribe();
 ```
 
 ### Subscribing to a wildcard topic using &#35;
@@ -128,13 +128,13 @@ const starSubscription = channel.observe('DrWho.#.Changed')
 .subscribe((data) => {
     $('<li>' + data.type + ' Changed: ' + data.value + '</li>').appendTo('#example3');
 });
-channel.subject('DrWho.NinthDoctor.Companion.Changed').onNext({type: 'Companion Name', value: 'Rose'});
-channel.subject('DrWho.TenthDoctor.Companion.Changed').onNext({type: 'Companion Name', value: 'Martha'});
-channel.subject('DrWho.Eleventh.Companion.Changed').onNext({type: 'Companion Name', value: 'Amy'});
-channel.subject('DrWho.Location.Changed').onNext({type: 'Location', value: 'The Library'});
-channel.subject('TheMaster.DrumBeat.Changed').onNext({type: 'DrumBeat', value: 'This won\'t trigger any subscriptions'});
-channel.subject('Changed').onNext({type: 'Useless', value: 'This won\'t trigger any subscriptions either'});
-starSubscription.dispose();
+channel.subject('DrWho.NinthDoctor.Companion.Changed').next({type: 'Companion Name', value: 'Rose'});
+channel.subject('DrWho.TenthDoctor.Companion.Changed').next({type: 'Companion Name', value: 'Martha'});
+channel.subject('DrWho.Eleventh.Companion.Changed').next({type: 'Companion Name', value: 'Amy'});
+channel.subject('DrWho.Location.Changed').next({type: 'Location', value: 'The Library'});
+channel.subject('TheMaster.DrumBeat.Changed').next({type: 'DrumBeat', value: 'This won\'t trigger any subscriptions'});
+channel.subject('Changed').next({type: 'Useless', value: 'This won\'t trigger any subscriptions either'});
+starSubscription.unsubscribe();
 ```
 
 
@@ -149,13 +149,13 @@ const dupSubscription = dupChannel.observe('WeepingAngel.#')
     });
 // demonstrating multiple channels per topic being used
 // You can do it this way if you like, but the example above has nicer syntax (and *much* less overhead)
-dupChannel.subject('WeepingAngel.DontBlink').onNext({value: 'Don\'t Blink'});
-dupChannel.subject('WeepingAngel.DontBlink').onNext({value: 'Don\'t Blink'});
-dupChannel.subject('WeepingAngel.DontEvenBlink').onNext({value: 'Don\'t Even Blink'});
-dupChannel.subject('WeepingAngel.DontBlink').onNext({value: 'Don\'t Close Your Eyes'});
-dupChannel.subject('WeepingAngel.DontBlink').onNext({value: 'Don\'t Blink'});
-dupChannel.subject('WeepingAngel.DontBlink').onNext({value: 'Don\'t Blink'});
-dupSubscription.dispose();
+dupChannel.subject('WeepingAngel.DontBlink').next({value: 'Don\'t Blink'});
+dupChannel.subject('WeepingAngel.DontBlink').next({value: 'Don\'t Blink'});
+dupChannel.subject('WeepingAngel.DontEvenBlink').next({value: 'Don\'t Even Blink'});
+dupChannel.subject('WeepingAngel.DontBlink').next({value: 'Don\'t Close Your Eyes'});
+dupChannel.subject('WeepingAngel.DontBlink').next({value: 'Don\'t Blink'});
+dupChannel.subject('WeepingAngel.DontBlink').next({value: 'Don\'t Blink'});
+dupSubscription.unsubscribe();
 ```
 
 ### Using request-response pattern
@@ -191,20 +191,20 @@ To handle requests:
 const subscription = channel.observe('last.login').subscribe(({data, replySubject}) => {
     const result = getLoginInfo(data.userId);
     // `replySubject` is just a Rx.AsyncSubject
-    replySubject.onNext({time: result.time, userId: data.userId});
-    replySubject.onCompleted();
+    replySubject.next({time: result.time, userId: data.userId});
+    replySubject.complete();
 });
 
 // ERROR REPLY
 const subscription = channel.observe('last.login').subscribe(({data, replySubject}) => {
     const result = getLoginInfo(data.userId);
     // `replySubject` is just a Rx.AsyncSubject
-    replySubject.onError(new Error('No such user'));
-    replySubject.onCompleted();
+    replySubject.error(new Error('No such user'));
+    replySubject.complete();
 });
 ```
 
-Make sure to *always* call `.onCompleted()` after you're done with dispatching your data.
+Make sure to *always* call `.complete()` after you're done with dispatching your data.
 
 ### Connecting external Rx.Observable to Rxmq topic
 

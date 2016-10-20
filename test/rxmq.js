@@ -1,5 +1,5 @@
 import test from 'tape';
-import Rx from 'rx';
+import Rx from 'rxjs/Rx';
 import Rxmq from '../index';
 
 test('RxMQ', (it) => {
@@ -48,12 +48,13 @@ test('RxMQ', (it) => {
             const channel = Rxmq.channel('customSubject');
             const subj = channel.subject('test', {Subject: Rx.Subject});
             t.plan(2);
-            subj.subscribe(() => {
-                t.ok(true);
+            subj.subscribe((ok) => {
+              console.log('done:', ok);
+                t.ok(ok);
             }, (e) => { throw e; });
-            subj.onNext(1);
-            subj.onNext(2);
-            subj.onCompleted();
+            subj.next(true);
+            subj.next(true);
+            subj.complete();
         });
 
         subit.test('# should create and subscribe to one-to-many subscription', (t) => {
@@ -64,11 +65,11 @@ test('RxMQ', (it) => {
             const testMessage = 'test message';
             // subscribe
             const sub = subj.subscribe((item) => {
-                sub.dispose();
+                sub.unsubscribe();
                 t.equal(item, testMessage);
                 t.end();
             });
-            subj.onNext(testMessage);
+            subj.next(testMessage);
         });
 
         subit.test('# should publish to multiple channels', (t) => {
@@ -82,7 +83,7 @@ test('RxMQ', (it) => {
             multiChannel.observe('test.*').subscribe(onData);
             multiChannel.observe('test.one').subscribe(onData);
             // send
-            multiChannel.subject('test.one').onNext(testData);
+            multiChannel.subject('test.one').next(testData);
         });
 
         subit.test('# should publish to multiple channels', (t) => {
@@ -92,7 +93,7 @@ test('RxMQ', (it) => {
             // generate first sub
             const sub = resubChan.observe('test.#').subscribe(data => {
                 t.equal(data, testData[0]);
-                sub.dispose();
+                sub.unsubscribe();
 
                 // listen for second output
                 resubChan.observe('test.#').subscribe(data2 => {
@@ -100,10 +101,10 @@ test('RxMQ', (it) => {
                 });
 
                 // trigger second output
-                resubChan.subject('test.one').onNext(testData[1]);
+                resubChan.subject('test.one').next(testData[1]);
             });
             // send
-            resubChan.subject('test.one').onNext(testData[0]);
+            resubChan.subject('test.one').next(testData[0]);
         });
 
         subit.test('# should allow dispatching several errors', (t) => {
@@ -113,10 +114,10 @@ test('RxMQ', (it) => {
                 val => t.ok(val),
                 e => t.assert(e)
             );
-            subject.onError(new Error('test'));
-            subject.onError(new Error('test 2'));
-            subject.onError(new Error('test 3'));
-            subject.onNext(true);
+            subject.error(new Error('test'));
+            subject.error(new Error('test 2'));
+            subject.error(new Error('test 3'));
+            subject.next(true);
         });
 
         /*
@@ -131,8 +132,8 @@ test('RxMQ', (it) => {
 
             rrSub.subscribe(({data, replySubject}) => {
                 t.equal(data, testRequest);
-                replySubject.onNext(testReply);
-                replySubject.onCompleted();
+                replySubject.next(testReply);
+                replySubject.complete();
             });
             channel.request({topic, data: testRequest})
                 .subscribe((replyData) => {
@@ -149,8 +150,8 @@ test('RxMQ', (it) => {
             const testReply = ['test reply', 'test reply 2', 'test reply 3'];
 
             rrSub.subscribe(({replySubject}) => {
-                testReply.map((item) => replySubject.onNext(item));
-                replySubject.onCompleted();
+                testReply.map((item) => replySubject.next(item));
+                replySubject.complete();
             });
             // test reply
             const fullReply = [];
