@@ -1,14 +1,14 @@
 import { Observable, Subject, AsyncSubject } from 'rxjs';
 import EndlessSubject from './endlessSubject';
 
-export interface NewableSubject<T> {
-    new(): Subject<T>
+export interface NewableSubject<U extends Subject<T>, T> {
+    new(): U
 }
 
 export type RequestOptions<U extends Subject<T>, T> = {
     topic: String,
     data?: any,
-    Subject?: NewableSubject<T>
+    Subject?: NewableSubject<U, T>
 } 
 
 declare class Channel<T> {
