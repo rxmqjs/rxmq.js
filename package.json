@@ -7,7 +7,8 @@
   "scripts": {
     "cover": "babel-node ./node_modules/istanbul/lib/cli cover ./node_modules/tape/bin/tape ./test",
     "build": "NODE_ENV=production rollup -c",
-    "test": "babel-node ./node_modules/tape/bin/tape ./test | tap-dot",
+    "test": "babel-node ./node_modules/tape/bin/tape ./test | tap-dot && npm run test-typings",
+    "test-typings": "./node_modules/.bin/tsc --noImplicitAny --lib es6,dom --noEmit ts/rxmq-test.ts",
     "docs": "esdoc -c esdoc.json",
     "prepublish": "npm run build"
   },
@@ -48,7 +49,8 @@
     "rollup": "^0.37.0",
     "rollup-plugin-babel": "^2.7.1",
     "tap-dot": "^1.0.5",
-    "tape": "^4.6.3"
+    "tape": "^4.6.3",
+    "typescript": "^2.1.6"
   },
   "types": "./ts/rxmq.d.ts"
 }
