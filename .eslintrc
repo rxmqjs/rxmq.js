@@ -1,5 +1,4 @@
 {
-  "parser": "babel-eslint",
   "extends": "airbnb",
   "rules": {
     "object-curly-spacing": [1, "never"],
