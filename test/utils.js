@@ -10,10 +10,8 @@ test('Utils', (describe) => {
             t.equal(compareTopics('test.one.two', 'test.#.two'), true);
             t.equal(compareTopics('test.one', 'test.*'), true);
             t.equal(compareTopics('test.two', 'test.#.two'), true);
-            t.equal(compareTopics('test.one.two', 'test.*'), true);
-            t.equal(compareTopics('test.one.two', '*.one'), true);
-            t.equal(compareTopics('test.one.two', '*'), true);
             t.equal(compareTopics('test.one.two', '#'), true);
+            t.equal(compareTopics('test.P1', '*.P1'), true);
             t.end();
         });
 
@@ -21,7 +19,11 @@ test('Utils', (describe) => {
             t.equal(compareTopics('test.one', 'test'), false);
             t.equal(compareTopics('test.one', 'test.#.two'), false);
             t.equal(compareTopics('test.two', 'test.*.two'), false);
+            t.equal(compareTopics('test.one.two', 'test.*'), false);
             t.equal(compareTopics('test.one.two', '*.two'), false);
+            t.equal(compareTopics('test.one.two', '*.one'), false);
+            t.equal(compareTopics('test.one.two', '*'), false);
+            t.equal(compareTopics('test.P10', '*.P1'), false);
             t.end();
         });
     });

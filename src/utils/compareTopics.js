@@ -18,7 +18,7 @@ const topicToRegex = (topic) => `^${topic.split('.')
         res += segment;
     }
     return result + res;
-}, '')}`;
+}, '')}$`;
 
 /**
  * Compares given topic with existing topic
