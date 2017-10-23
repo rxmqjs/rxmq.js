@@ -1,5 +1,5 @@
 {
-    "source": "./src",
-    "destination": "./esdoc",
-    "coverage": true
+  "source": "./src",
+  "destination": "./esdoc",
+  "plugins": [{"name": "esdoc-standard-plugin"}]
 }
