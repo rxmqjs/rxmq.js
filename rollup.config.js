@@ -1,15 +1,19 @@
 import babel from 'rollup-plugin-babel';
 
 const pkg = require('./package.json');
-const external = Object.keys(pkg.dependencies);
+const globals = {'rxjs/Rx': 'Rx'};
+const external = Object.keys(pkg.dependencies).concat(['rxjs/Rx']);
 
 export default {
-    entry: './index.js',
-    dest: pkg.main,
+  input: './index.js',
+  output: {
+    file: pkg.main,
     format: 'umd',
-    moduleName: 'rxmq',
     exports: 'named',
-    sourceMap: true,
-    plugins: [babel()],
-    external,
+  },
+  globals,
+  name: 'rxmq',
+  sourcemap: true,
+  plugins: [babel()],
+  external,
 };
