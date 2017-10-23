@@ -11,25 +11,25 @@ import Rx from 'rxjs/Rx';
  * does not closes observers on errors (thus allowing to continuously dispatch them).
  */
 class EndlessSubject extends Rx.Subject {
-    /**
+  /**
      * Dummy method override to prevent execution and Rx.Observable completion
      * @return {void}
      */
-    complete() {}
+  complete() {}
 
-    /**
+  /**
      * Override of error method that prevents stopping that Rx.Observer
      * @param  {Error} error  - Error to be dispatched
      * @return {void}
      */
-    error(error) {
-        this.thrownError = error;
-        // dispatch to all observers
-        this.observers.forEach(os => {
-            // dispatch directly to destination
-            os.destination._error.call(os.destination._context, error);
-        });
-    }
+  error(error) {
+    this.thrownError = error;
+    // dispatch to all observers
+    this.observers.forEach(os => {
+      // dispatch directly to destination
+      os.destination._error.call(os.destination._context, error);
+    });
+  }
 }
 
 export {EndlessSubject};
