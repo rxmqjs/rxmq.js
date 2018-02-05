@@ -1,6 +1,6 @@
 {
   "name": "rxmq",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "JavaScript pub/sub library based on RxJS",
   "main": "es5/component.js",
   "es6": "index.js",
@@ -24,14 +24,10 @@
   "babel": {
     "env": {
       "production": {
-        "presets": [
-          "es2015-rollup"
-        ]
+        "presets": ["es2015-rollup"]
       },
       "development": {
-        "presets": [
-          "es2015"
-        ]
+        "presets": ["es2015"]
       }
     }
   },
