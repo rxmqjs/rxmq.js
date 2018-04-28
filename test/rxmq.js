@@ -1,5 +1,5 @@
 import test from 'tape';
-import Rx from 'rxjs/Rx';
+import { Subject } from 'rxjs/Rx';
 import Rxmq from '../index';
 
 test('RxMQ', it => {
@@ -44,9 +44,9 @@ test('RxMQ', it => {
       t.end();
     });
 
-    subit.test('# should create new subject with custom Rx.Subject', t => {
+    subit.test('# should create new subject with custom Subject', t => {
       const channel = Rxmq.channel('customSubject');
-      const subj = channel.subject('test', {Subject: Rx.Subject});
+      const subj = channel.subject('test', {Subject: Subject});
       t.plan(2);
       subj.subscribe(
         ok => {
@@ -156,7 +156,7 @@ test('RxMQ', it => {
       });
       // test reply
       const fullReply = [];
-      channel.request({topic, data: testRequest, Subject: Rx.Subject}).subscribe(
+      channel.request({topic, data: testRequest, Subject: Subject}).subscribe(
         replyData => {
           fullReply.push(replyData);
         },

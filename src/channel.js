@@ -1,4 +1,4 @@
-import Rx from 'rxjs/Rx';
+import { AsyncSubject, Observable } from 'rxjs';
 import {EndlessSubject, EndlessReplaySubject} from './rx/index';
 import {findSubjectByName, compareTopics} from './utils/index';
 
@@ -37,8 +37,8 @@ class Channel {
          */
     this.channelBus = new EndlessReplaySubject();
     /**
-         * Permanent channel bus stream as Rx.Observable
-         * @type {Rx.Observable}
+         * Permanent channel bus stream as Observable
+         * @type {Observable}
          * @private
          */
     this.channelStream = this.channelBus.publish().refCount();
@@ -67,13 +67,13 @@ class Channel {
   }
 
   /**
-     * Get an Rx.Observable for specific set of topics
+     * Get an Observable for specific set of topics
      * @param  {String}         name        Topic name / pattern
-     * @return {Rx.Observable}              Rx.Observable for given set of topics
+     * @return {Observable}                 Observable for given set of topics
      * @example
      * const channel = rxmq.channel('test');
      * channel.observe('test.topic')
-     *        .subscribe((res) => { // default Rx.Observable subscription
+     *        .subscribe((res) => { // default Observable subscription
      *            // handle results
      *        });
      */
@@ -87,26 +87,26 @@ class Channel {
   }
 
   /**
-     * Do a request that will be replied into returned Rx.AsyncSubject
+     * Do a request that will be replied into returned AsyncSubject
      * Alias for '.request()' that uses single object as params
      * @param  {Object}  options                   Request options
      * @param  {String}  options.topic             Topic name
      * @param  {Any}     options.data              Request data
-     * @param  {Object}  options.DefaultSubject    Response subject, defaults to Rx.AsyncSubject
-     * @return {Rx.AsyncSubject}                   AsyncSubject that will dispatch the response
+     * @param  {Object}  options.DefaultSubject    Response subject, defaults to AsyncSubject
+     * @return {AsyncSubject}                      AsyncSubject that will dispatch the response
      * @example
      * const channel = rxmq.channel('test');
      * channel.requestTo({
      *     topic: 'test.topic',
      *     data: 'test data',
-     * }).subscribe((response) => { // default Rx.Observable subscription
+     * }).subscribe((response) => { // default Observable subscription
      *     // handle response
      * });
      */
-  request({topic, data, Subject = Rx.AsyncSubject}) {
+  request({topic, data, Subject = AsyncSubject}) {
     const subj = this.utils.findSubjectByName(this.subjects, topic);
     if (!subj) {
-      return Rx.Observable.never();
+      return Observable.never();
     }
 
     // create reply subject
