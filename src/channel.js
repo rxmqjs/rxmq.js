@@ -1,4 +1,4 @@
-import { AsyncSubject, Observable } from 'rxjs';
+import { AsyncSubject, Observable } from 'rxjs/Rx';
 import {EndlessSubject, EndlessReplaySubject} from './rx/index';
 import {findSubjectByName, compareTopics} from './utils/index';
 
