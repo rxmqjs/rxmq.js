@@ -24,16 +24,21 @@
   "babel": {
     "env": {
       "production": {
-        "presets": ["es2015-rollup"]
+        "presets": [
+          "es2015-rollup"
+        ]
       },
       "development": {
-        "presets": ["es2015"]
+        "presets": [
+          "es2015"
+        ]
       }
     }
   },
   "license": "MIT",
   "dependencies": {
-    "rxjs": "^5.5.0"
+    "rxjs": "^6.0.0",
+    "rxjs-compat": "^6.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

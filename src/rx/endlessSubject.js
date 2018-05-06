@@ -1,5 +1,5 @@
 /* eslint no-param-reassign: [2, {"props": false}] */
-import Rx from 'rxjs/Rx';
+import { Subject } from 'rxjs/Rx';
 
 /**
  * EndlessSubject extension of Rx.Subject.
@@ -10,7 +10,7 @@ import Rx from 'rxjs/Rx';
  * The only difference is that EndlessSubject never triggers '.complete()' and
  * does not closes observers on errors (thus allowing to continuously dispatch them).
  */
-class EndlessSubject extends Rx.Subject {
+class EndlessSubject extends Subject {
   /**
      * Dummy method override to prevent execution and Rx.Observable completion
      * @return {void}
