@@ -1,6 +1,6 @@
 {
   "name": "rxmq",
-  "version": "1.1.5",
+  "version": "1.2.0",
   "description": "JavaScript pub/sub library based on RxJS",
   "main": "es5/component.js",
   "es6": "index.js",
@@ -24,21 +24,17 @@
   "babel": {
     "env": {
       "production": {
-        "presets": [
-          "es2015-rollup"
-        ]
+        "presets": ["es2015-rollup"]
       },
       "development": {
-        "presets": [
-          "es2015"
-        ]
+        "presets": ["es2015"]
       }
     }
   },
   "license": "MIT",
   "dependencies": {
-    "rxjs": "^6.0.0",
-    "rxjs-compat": "^6.0.0"
+    "rxjs": "^6.1.0",
+    "rxjs-compat": "^6.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -46,10 +42,10 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-es2015-rollup": "^3.0.0",
     "babelrc-rollup": "^3.0.0",
-    "esdoc": "^1.0.3",
+    "esdoc": "^1.1.0",
     "esdoc-standard-plugin": "^1.0.0",
     "istanbul": "^1.1.0-alpha.1",
-    "rollup": "^0.50.0",
+    "rollup": "^0.58.2",
     "rollup-plugin-babel": "^3.0.2",
     "tap-dot": "^1.0.5",
     "tape": "^4.8.0",
