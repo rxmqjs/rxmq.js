@@ -1,5 +1,5 @@
 /* eslint no-param-reassign: [2, {"props": false}] */
-import { ReplaySubject } from 'rxjs/Rx';
+import {ReplaySubject} from 'rxjs/Rx';
 
 /**
  * EndlessReplaySubject extension of ReplaySubject.
@@ -12,16 +12,16 @@ import { ReplaySubject } from 'rxjs/Rx';
  */
 class EndlessReplaySubject extends ReplaySubject {
   /**
-     * Dummy method override to prevent execution and Observable completion
-     * @return {void}
-     */
+   * Dummy method override to prevent execution and Observable completion
+   * @return {void}
+   */
   complete() {}
 
   /**
-     * Override of error method that prevents stopping that Observer
-     * @param  {Error} error  - Error to be dispatched
-     * @return {void}
-     */
+   * Override of error method that prevents stopping that Observer
+   * @param  {Error} error  - Error to be dispatched
+   * @return {void}
+   */
   error(error) {
     // store error
     this.error = error;

@@ -1,5 +1,5 @@
 /* eslint no-param-reassign: [2, {"props": false}] */
-import { Subject } from 'rxjs/Rx';
+import {Subject} from 'rxjs/Rx';
 
 /**
  * EndlessSubject extension of Rx.Subject.
@@ -12,16 +12,16 @@ import { Subject } from 'rxjs/Rx';
  */
 class EndlessSubject extends Subject {
   /**
-     * Dummy method override to prevent execution and Rx.Observable completion
-     * @return {void}
-     */
+   * Dummy method override to prevent execution and Rx.Observable completion
+   * @return {void}
+   */
   complete() {}
 
   /**
-     * Override of error method that prevents stopping that Rx.Observer
-     * @param  {Error} error  - Error to be dispatched
-     * @return {void}
-     */
+   * Override of error method that prevents stopping that Rx.Observer
+   * @param  {Error} error  - Error to be dispatched
+   * @return {void}
+   */
   error(error) {
     this.thrownError = error;
     // dispatch to all observers
