@@ -1,5 +1,5 @@
 module.exports = {
-    webpackConfig: {
-        production: require('./webpack.config.js'),
-    },
+  webpackConfig: {
+    production: require('./webpack.config.js'),
+  },
 };
