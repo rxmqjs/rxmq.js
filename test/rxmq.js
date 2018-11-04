@@ -94,7 +94,7 @@ test('RxMQ', it => {
     subit.test('# should publish to multiple channels', t => {
       const resubChan = Rxmq.channel('resubtest');
       const testData = ['test', 'test2'];
-      t.plan(2);
+      t.plan(3);
       // generate first sub
       const sub = resubChan.observe('test.#').subscribe(data => {
         t.equal(data, testData[0]);
