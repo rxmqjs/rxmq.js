@@ -41,7 +41,7 @@ class Channel {
      * @type {Observable}
      * @private
      */
-    this.channelStream = this.channelBus.publish().refCount();
+    this.channelStream = this.channelBus.publishReplay().refCount();
 
     // inject plugins
     plugins.map(this.registerPlugin.bind(this));
