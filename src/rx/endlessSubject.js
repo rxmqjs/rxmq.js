@@ -1,5 +1,5 @@
 /* eslint no-param-reassign: [2, {"props": false}] */
-import {Subject} from 'rxjs/Rx';
+import {Subject} from 'rxjs';
 
 /**
  * EndlessSubject extension of Rx.Subject.

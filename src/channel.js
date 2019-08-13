@@ -1,4 +1,5 @@
-import {AsyncSubject, Observable} from 'rxjs/Rx';
+import {AsyncSubject, Observable} from 'rxjs';
+import {publishReplay, refCount, filter, mergeAll} from 'rxjs/operators'
 import {EndlessSubject, EndlessReplaySubject} from './rx/index';
 import {findSubjectByName, compareTopics} from './utils/index';
 
@@ -41,7 +42,10 @@ class Channel {
      * @type {Observable}
      * @private
      */
-    this.channelStream = this.channelBus.publishReplay().refCount();
+    this.channelStream = this.channelBus.pipe(
+      publishReplay(),
+      refCount()
+    );
 
     // inject plugins
     plugins.map(this.registerPlugin.bind(this));
@@ -83,7 +87,10 @@ class Channel {
       return this.subject(name);
     }
     // return stream
-    return this.channelStream.filter(obs => compareTopics(obs.name, name)).mergeAll();
+    return this.channelStream.pipe(
+      filter(obs => compareTopics(obs.name, name)),
+      mergeAll()
+    );
   }
 
   /**
