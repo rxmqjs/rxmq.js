@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl">
+  <title data-ice="title">Home | rxmq</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="JavaScript pub/sub library based on RxJS"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="rxmq"><meta property="twitter:description" content="JavaScript pub/sub library based on RxJS"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/rxmqjs/rxmq.js"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/channel.js~Channel.html">Channel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/rxmq.js~Rxmq.html">Rxmq</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#rx">rx</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/rx/endlessReplaySubject.js~EndlessReplaySubject.html">EndlessReplaySubject</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/rx/endlessSubject.js~EndlessSubject.html">EndlessSubject</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utils">utils</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-compareTopics">compareTopics</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-findSubjectByName">findSubjectByName</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="rxmq-js">Rxmq.js</h1><p><a href="https://gitter.im/rxmqjs/rxmq.js?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/rxmqjs/rxmq.js"></a>
+<a href="https://app.wercker.com/project/bykey/56f1fdd3a0180730a13447755e5714df"><img src="https://app.wercker.com/status/56f1fdd3a0180730a13447755e5714df/s" alt="wercker status" title="wercker status"></a>
+<a href="https://www.npmjs.com/package/rxmq"><img src="https://img.shields.io/npm/v/rxmq.svg" alt="npm"></a>
+<a href="http://opensource.org/licenses/MIT"><img src="https://img.shields.io/npm/l/rxmq.svg" alt="MIT"></a></p>
+<blockquote>
+<p>JavaScript pub/sub library based on RxJS</p>
+</blockquote>
+<h2 id="what-is-it-">What is it?</h2><p>Rxmq.js is an in-memory message bus based on <a href="https://github.com/Reactive-Extensions/RxJS">reactive extensions</a> - inspired by <a href="https://github.com/postaljs/postal.js">postal.js</a> - written in JavaScript using ES6 and Babel.
+Rxmq.js runs equally good in the browser and on the server using node.js.
+It provides a &apos;broker&apos; that allows for creation of more sophisticated pub/sub implementations than what you usually find in event-style based libraries.
+On top of that, all used objects are parts of reactive extensions which allows doing a lot of cool things with them out of the box.</p>
+<h2 id="quick-start">Quick start</h2><p>If you want to subscribe to an observable, you tell Rxmq what channel and topic to subscribe to and a set of functions to be invoked (taken from <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/operators/subscribe.md">Rx.Observable.subscribe</a>):</p>
+<pre><code class="lang-js"><code class="source-code prettyprint">import Rxmq from &apos;rxmq&apos;;
+
+const subscription = Rxmq.channel(&apos;posts&apos;)
+  .observe(&apos;post.add&apos;)
+  .subscribe(
+    // following methods are same as for Rx.Observable.subscribe
+    data =&gt; {
+      // handle new data ...
+    },
+    error =&gt; {
+      // handle error ...
+    }
+  );</code>
+</code></pre>
+<p>The publisher might do something similar to this:</p>
+<pre><code class="lang-js"><code class="source-code prettyprint">Rxmq.channel(&apos;posts&apos;)
+  .subject(&apos;post.add&apos;)
+  .next({
+    title: &apos;Woo-hoo, first post!&apos;,
+    text: &apos;My lengthy post here&apos;,
+  });</code>
+</code></pre>
+<p>Note, that if you are not using ES6 modules (e.g. with babel), you will need to require Rxmq in the following way:</p>
+<pre><code class="lang-js"><code class="source-code prettyprint">var Rxmq = require(&apos;rxmq&apos;).default;</code>
+</code></pre>
+<h3 id="channels--topics-">Channels? Topics?</h3><p>A channel is a logical partition of topics, more specifically - a set of topics.
+As well explained by <a href="https://github.com/postaljs/postal.js/blob/master/README.md">postal.js readme section on channels</a>, conceptually, it&apos;s like a dedicated highway for a specific set of communication.
+In case of Rxmq.js each topic is represented by a slightly tweaked <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/subjects/subject.md">Rx.Subject</a> (specifically - it never triggers <code>complete()</code>, so you can keep sending your data all the time).
+Using channel- and topic-oriented messaging instead of traditional JavaScript approaches like callbacks or promises enables you to separate components (or modules) communication by context.</p>
+<p>It&apos;s possible to get a more concise API if you want to hang onto a <code>Channel</code> - which can be really convenient while working with a specific channel (e.g. inside of a specific component):</p>
+<pre><code class="lang-js"><code class="source-code prettyprint">const channel = Rxmq.channel(&apos;posts&apos;);
+const subject = channel.subject(&apos;post.add&apos;);
+
+const subscription = subject.subscribe(data =&gt; {
+  /*do stuff with data */
+});
+
+subject.next({
+  title: &apos;Woo-hoo, first post!&apos;,
+  text: &apos;My lengthy post here&apos;,
+});</code>
+</code></pre>
+<h2 id="how--39-s-rxmq-js-different-from--insert-eventing-library-here--">How&apos;s Rxmq.js Different From {Insert Eventing Library Here}?</h2><p>Some of those are shamelessly taken from postal.js list :)</p>
+<ul>
+<li>Rxmq is not an event emitter - it&apos;s not meant to be mixed into an instance. Instead, it&apos;s a stand alone &apos;broker&apos; &#x2013; a <em>message bus</em>.</li>
+<li>Rxmq uses a slightly modified <em>Rx.Subject</em> (it will never be completed or stopped by error) to pass messages. This means you use all the cool features of <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md">Rx.Observable</a> and <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observer.md">Rx.Observer</a> while working on your messaging.</li>
+<li>Most &apos;event aggregator&apos; libs are <em>single channel</em> - which can lead to event name collision, and reduce the performance of matching an event to the correct subscribers. Rxmq is <em>multi-channel</em>.</li>
+<li>Rxmq built-in topic logic supports hierarchical wildcard topic bindings - supporting the same logic as topic bindings in the AMQP spec. And if you don&apos;t like that approach, you can easily provide your own bindings resolver.</li>
+</ul>
+<h2 id="more-on-how-to-use-it">More on How to Use It</h2><p>Here are four examples of using Rxmq.</p>
+<pre><code class="lang-js"><code class="source-code prettyprint">// This gets you a handle to the default Rxmq channel
+// You can get a named channel instead like this:
+// const channel = Rxmq.channel(&apos;DoctorWho&apos;);
+const channel = Rxmq.channel();
+
+// subscribe to &apos;name.change&apos; topics
+const subscription = channel.observe(&apos;name.change&apos;).subscribe(data =&gt; {
+  $(&apos;#example1&apos;).html(&apos;Name: &apos; + data.name);
+});
+
+// And someone publishes a name change:
+channel.subject(&apos;name.change&apos;).next({ name: &apos;Dr. Who&apos; });
+
+// To dispose, just trigger the unsubscribe() method:
+subscription.unsubscribe();</code>
+</code></pre>
+<h3 id="subscribing-to-a-wildcard-topic-using--">Subscribing to a wildcard topic using *</h3><p>The <code>*</code> symbol represents &apos;one word&apos; in a topic (i.e - the text between two periods of a topic).
+By subscribing to <code>&apos;*.changed&apos;</code>, the binding will match <code>name.changed</code> &amp; <code>location.changed</code> but <em>not</em> <code>changed.companion</code>.</p>
+<pre><code class="lang-js"><code class="source-code prettyprint">const chgSubscription = channel.observe(&apos;*.changed&apos;).subscribe(data =&gt; {
+  $(&apos;&lt;li&gt;&apos; + data.type + &apos; changed: &apos; + data.value + &apos;&lt;/li&gt;&apos;).appendTo(
+    &apos;#example2&apos;
+  );
+});
+channel.subject(&apos;name.changed&apos;).next({ type: &apos;Name&apos;, value: &apos;John Smith&apos; });
+channel
+  .subject(&apos;location.changed&apos;)
+  .next({ type: &apos;Location&apos;, value: &apos;Early 20th Century England&apos; });
+chgSubscription.unsubscribe();</code>
+</code></pre>
+<h3 id="subscribing-to-a-wildcard-topic-using---35-">Subscribing to a wildcard topic using #</h3><p>The <code>#</code> symbol represents 0-n number of characters/words in a topic string. By subscribing to <code>&apos;DrWho.#.Changed&apos;</code>, the binding will match <code>DrWho.NinthDoctor.Companion.Changed</code> &amp; <code>DrWho.Location.Changed</code> but <em>not</em> <code>Changed</code>.</p>
+<pre><code class="lang-javascript"><code class="source-code prettyprint">const starSubscription = channel.observe(&apos;DrWho.#.Changed&apos;).subscribe(data =&gt; {
+  $(&apos;&lt;li&gt;&apos; + data.type + &apos; Changed: &apos; + data.value + &apos;&lt;/li&gt;&apos;).appendTo(
+    &apos;#example3&apos;
+  );
+});
+channel
+  .subject(&apos;DrWho.NinthDoctor.Companion.Changed&apos;)
+  .next({ type: &apos;Companion Name&apos;, value: &apos;Rose&apos; });
+channel
+  .subject(&apos;DrWho.TenthDoctor.Companion.Changed&apos;)
+  .next({ type: &apos;Companion Name&apos;, value: &apos;Martha&apos; });
+channel
+  .subject(&apos;DrWho.Eleventh.Companion.Changed&apos;)
+  .next({ type: &apos;Companion Name&apos;, value: &apos;Amy&apos; });
+channel
+  .subject(&apos;DrWho.Location.Changed&apos;)
+  .next({ type: &apos;Location&apos;, value: &apos;The Library&apos; });
+channel
+  .subject(&apos;TheMaster.DrumBeat.Changed&apos;)
+  .next({ type: &apos;DrumBeat&apos;, value: &quot;This won&apos;t trigger any subscriptions&quot; });
+channel.subject(&apos;Changed&apos;).next({
+  type: &apos;Useless&apos;,
+  value: &quot;This won&apos;t trigger any subscriptions either&quot;,
+});
+starSubscription.unsubscribe();</code>
+</code></pre>
+<h3 id="using-rx-observable-methods-with-a-subscription">Using Rx.Observable methods with a subscription</h3><pre><code class="lang-js"><code class="source-code prettyprint">const dupChannel = Rxmq.channel(&apos;Blink&apos;);
+const dupSubscription = dupChannel
+  .observe(&apos;WeepingAngel.#&apos;)
+  .distinctUntilChanged()
+  .subscribe(data =&gt; {
+    $(&apos;&lt;li&gt;&apos; + data.value + &apos;&lt;/li&gt;&apos;).appendTo(&apos;#example4&apos;);
+  });
+// demonstrating multiple channels per topic being used
+// You can do it this way if you like, but the example above has nicer syntax (and *much* less overhead)
+dupChannel.subject(&apos;WeepingAngel.DontBlink&apos;).next({ value: &quot;Don&apos;t Blink&quot; });
+dupChannel.subject(&apos;WeepingAngel.DontBlink&apos;).next({ value: &quot;Don&apos;t Blink&quot; });
+dupChannel
+  .subject(&apos;WeepingAngel.DontEvenBlink&apos;)
+  .next({ value: &quot;Don&apos;t Even Blink&quot; });
+dupChannel
+  .subject(&apos;WeepingAngel.DontBlink&apos;)
+  .next({ value: &quot;Don&apos;t Close Your Eyes&quot; });
+dupChannel.subject(&apos;WeepingAngel.DontBlink&apos;).next({ value: &quot;Don&apos;t Blink&quot; });
+dupChannel.subject(&apos;WeepingAngel.DontBlink&apos;).next({ value: &quot;Don&apos;t Blink&quot; });
+dupSubscription.unsubscribe();</code>
+</code></pre>
+<h3 id="using-request-response-pattern">Using request-response pattern</h3><p>To make a request, you can do the following:</p>
+<pre><code class="lang-js"><code class="source-code prettyprint">const channel = rxmq.channel(&apos;user&apos;);
+
+channel
+  .request({ topic: &apos;last.login&apos;, data: { userId: 8675309 } })
+  .timeout(2000)
+  .subscribe(
+    data =&gt;
+      console.log(
+        `Last login for userId: ${data.userId} occurred on ${data.time}`
+      ),
+    err =&gt; console.error(&apos;Uh oh! Error:&apos;, err),
+    () =&gt; console.log(&apos;done!&apos;)
+  );</code>
+</code></pre>
+<p>It&apos;s also possible to make a request with custom reply subject, like so:</p>
+<pre><code class="lang-js"><code class="source-code prettyprint">const channel = rxmq.channel(&apos;user&apos;);
+
+channel
+  .request({
+    topic: &apos;posts.all&apos;,
+    data: { userId: 8675309 },
+    Subject: Rx.Subject,
+  })
+  .subscribe(
+    post =&gt; console.log(`Got post: ${post.id}`),
+    err =&gt; console.error(&apos;Uh oh! Error:&apos;, err),
+    () =&gt; console.log(&apos;done!&apos;)
+  );</code>
+</code></pre>
+<p>To handle requests:</p>
+<pre><code class="lang-js"><code class="source-code prettyprint">// SUCCESS REPLY
+const subscription = channel
+  .observe(&apos;last.login&apos;)
+  .subscribe(({ data, replySubject }) =&gt; {
+    const result = getLoginInfo(data.userId);
+    // `replySubject` is just a Rx.AsyncSubject
+    replySubject.next({ time: result.time, userId: data.userId });
+    replySubject.complete();
+  });
+
+// ERROR REPLY
+const subscription = channel
+  .observe(&apos;last.login&apos;)
+  .subscribe(({ data, replySubject }) =&gt; {
+    const result = getLoginInfo(data.userId);
+    // `replySubject` is just a Rx.AsyncSubject
+    replySubject.error(new Error(&apos;No such user&apos;));
+    replySubject.complete();
+  });</code>
+</code></pre>
+<p>Make sure to <em>always</em> call <code>.complete()</code> after you&apos;re done with dispatching your data.</p>
+<h3 id="connecting-external-rx-observable-to-rxmq-topic">Connecting external Rx.Observable to Rxmq topic</h3><pre><code class="lang-js"><code class="source-code prettyprint">const topic = channel.subject(&apos;ajax&apos;);
+const ajax = Rx.Observable.fromPromise($.ajax({ url: &apos;http://...&apos; }).promise());
+ajax.multicast(topic).connect();</code>
+</code></pre>
+<h2 id="more-references">More References</h2><p>Please visit the <a href="http://rxmqjs.github.io/rxmq.js/">rxmq.js documentation</a> website for full API documentation.</p>
+<h2 id="available-plugins">Available plugins</h2><ul>
+<li><a href="https://github.com/rxmqjs/rxmq.aliases">rxmq.aliases</a> - a plugin that provides bus- and channel-level convenience aliases.</li>
+<li><a href="https://github.com/rxmqjs/rxmq.middleware">rxmq.middleware</a> - a plugin that adds support for topic-based middleware.</li>
+</ul>
+<h2 id="i-still-need-help-">I still need help!</h2><p>Feel free to ask any questions you might have by <a href="https://github.com/rxmqjs/rxmq.js/issues">opening an issue</a>.</p>
+<h2 id="build--dependencies--etc-">Build, Dependencies, etc.</h2><ul>
+<li>Rxmq depends only on <a href="https://github.com/Reactive-Extensions/RxJS">RxJS</a>.</li>
+</ul>
+<h2 id="can-i-contribute-">Can I contribute?</h2><p>Sure thing!
+While project is still in its early days, I hope the API is relatively stable.
+Pull requests are welcome, but please make sure to include tests for your additions.</p>
+<h2 id="license">License</h2><p><a href="http://www.opensource.org/licenses/mit-license">MIT</a></p>
+</div>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

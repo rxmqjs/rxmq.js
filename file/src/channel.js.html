@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/channel.js | rxmq</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="JavaScript pub/sub library based on RxJS"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="rxmq"><meta property="twitter:description" content="JavaScript pub/sub library based on RxJS"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/rxmqjs/rxmq.js"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/channel.js~Channel.html">Channel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/rxmq.js~Rxmq.html">Rxmq</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#rx">rx</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/rx/endlessReplaySubject.js~EndlessReplaySubject.html">EndlessReplaySubject</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/rx/endlessSubject.js~EndlessSubject.html">EndlessSubject</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utils">utils</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-compareTopics">compareTopics</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-findSubjectByName">findSubjectByName</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/channel.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { AsyncSubject, Observable } from &apos;rxjs&apos;;
+import { publishReplay, refCount, filter, mergeAll } from &apos;rxjs/operators&apos;;
+import { EndlessSubject, EndlessReplaySubject } from &apos;./rx/index&apos;;
+import { findSubjectByName, compareTopics } from &apos;./utils/index&apos;;
+
+/**
+ * Rxmq channel class
+ */
+class Channel {
+  /**
+   * Represents a new Rxmq channel.
+   * Normally you wouldn&apos;t need to instantiate it directly, you&apos;d just work with existing instance.
+   * @constructor
+   * @param  {Array}   plugins  Array of plugins for new channel
+   * @return {void}
+   */
+  constructor(plugins = []) {
+    /**
+     * Internal set of utilities
+     * @type {Object}
+     * @private
+     */
+    this.utils = {
+      findSubjectByName,
+      compareTopics,
+    };
+
+    /**
+     * Instances of subjects
+     * @type {Array}
+     * @private
+     */
+    this.subjects = [];
+    /**
+     * Channel bus
+     * @type {EndlessReplaySubject}
+     * @private
+     */
+    this.channelBus = new EndlessReplaySubject();
+    /**
+     * Permanent channel bus stream as Observable
+     * @type {Observable}
+     * @private
+     */
+    this.channelStream = this.channelBus.pipe(
+      publishReplay(),
+      refCount()
+    );
+
+    // inject plugins
+    plugins.map(this.registerPlugin.bind(this));
+  }
+
+  /**
+   * Returns EndlessSubject representing given topic
+   * @param  {String}         name           Topic name
+   * @return {EndlessSubject}             EndlessSubject representing given topic
+   * @example
+   * const channel = rxmq.channel(&apos;test&apos;);
+   * const subject = channel.subject(&apos;test.topic&apos;);
+   */
+  subject(name, { Subject = EndlessSubject } = {}) {
+    let s = this.utils.findSubjectByName(this.subjects, name);
+    if (!s) {
+      s = new Subject();
+      s.name = name;
+      this.subjects.push(s);
+      this.channelBus.next(s);
+    }
+    return s;
+  }
+
+  /**
+   * Get an Observable for specific set of topics
+   * @param  {String}         name        Topic name / pattern
+   * @return {Observable}                 Observable for given set of topics
+   * @example
+   * const channel = rxmq.channel(&apos;test&apos;);
+   * channel.observe(&apos;test.topic&apos;)
+   *        .subscribe((res) =&gt; { // default Observable subscription
+   *            // handle results
+   *        });
+   */
+  observe(name) {
+    // create new topic if it&apos;s plain text
+    if (name.indexOf(&apos;#&apos;) === -1 &amp;&amp; name.indexOf(&apos;*&apos;) === -1) {
+      return this.subject(name);
+    }
+    // return stream
+    return this.channelStream.pipe(
+      filter(obs =&gt; compareTopics(obs.name, name)),
+      mergeAll()
+    );
+  }
+
+  /**
+   * Do a request that will be replied into returned AsyncSubject
+   * Alias for &apos;.request()&apos; that uses single object as params
+   * @param  {Object}  options                   Request options
+   * @param  {String}  options.topic             Topic name
+   * @param  {Any}     options.data              Request data
+   * @param  {Object}  options.DefaultSubject    Response subject, defaults to AsyncSubject
+   * @return {AsyncSubject}                      AsyncSubject that will dispatch the response
+   * @example
+   * const channel = rxmq.channel(&apos;test&apos;);
+   * channel.requestTo({
+   *     topic: &apos;test.topic&apos;,
+   *     data: &apos;test data&apos;,
+   * }).subscribe((response) =&gt; { // default Observable subscription
+   *     // handle response
+   * });
+   */
+  request({ topic, data, Subject = AsyncSubject }) {
+    const subj = this.utils.findSubjectByName(this.subjects, topic);
+    if (!subj) {
+      return Observable.never();
+    }
+
+    // create reply subject
+    const replySubject = new Subject();
+    subj.next({ replySubject, data });
+    return replySubject;
+  }
+
+  /**
+   * Channel plugin registration
+   * @param  {Object} plugin Plugin object to apply
+   * @return {void}
+   */
+  registerPlugin(plugin) {
+    for (const prop in plugin) {
+      if (!this.hasOwnProperty(prop)) {
+        /**
+         * Hide from esdoc
+         * @private
+         */
+        this[prop] = plugin[prop];
+      }
+    }
+  }
+}
+
+/**
+ * Channel definition
+ */
+export default Channel;
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

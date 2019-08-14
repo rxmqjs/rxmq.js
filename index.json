@@ -1,0 +1,1493 @@
+[
+  {
+    "__docId__": 1,
+    "kind": "external",
+    "name": "Infinity",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Infinity",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 2,
+    "kind": "external",
+    "name": "NaN",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~NaN",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 3,
+    "kind": "external",
+    "name": "undefined",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~undefined",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 4,
+    "kind": "external",
+    "name": "null",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~null",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 5,
+    "kind": "external",
+    "name": "Object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Object",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 6,
+    "kind": "external",
+    "name": "object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~object",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 7,
+    "kind": "external",
+    "name": "Function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Function",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 8,
+    "kind": "external",
+    "name": "function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~function",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 9,
+    "kind": "external",
+    "name": "Boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Boolean",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 10,
+    "kind": "external",
+    "name": "boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~boolean",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 11,
+    "kind": "external",
+    "name": "Symbol",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Symbol",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 12,
+    "kind": "external",
+    "name": "Error",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Error",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 13,
+    "kind": "external",
+    "name": "EvalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~EvalError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 14,
+    "kind": "external",
+    "name": "InternalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~InternalError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 15,
+    "kind": "external",
+    "name": "RangeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~RangeError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 16,
+    "kind": "external",
+    "name": "ReferenceError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~ReferenceError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 17,
+    "kind": "external",
+    "name": "SyntaxError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~SyntaxError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 18,
+    "kind": "external",
+    "name": "TypeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~TypeError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 19,
+    "kind": "external",
+    "name": "URIError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~URIError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 20,
+    "kind": "external",
+    "name": "Number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Number",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 21,
+    "kind": "external",
+    "name": "number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~number",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 22,
+    "kind": "external",
+    "name": "Date",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Date",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 23,
+    "kind": "external",
+    "name": "String",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~String",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 24,
+    "kind": "external",
+    "name": "string",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~string",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 25,
+    "kind": "external",
+    "name": "RegExp",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~RegExp",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 26,
+    "kind": "external",
+    "name": "Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 27,
+    "kind": "external",
+    "name": "Int8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int8Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 28,
+    "kind": "external",
+    "name": "Uint8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint8Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 29,
+    "kind": "external",
+    "name": "Uint8ClampedArray",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint8ClampedArray",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 30,
+    "kind": "external",
+    "name": "Int16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int16Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 31,
+    "kind": "external",
+    "name": "Uint16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint16Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 32,
+    "kind": "external",
+    "name": "Int32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 33,
+    "kind": "external",
+    "name": "Uint32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 34,
+    "kind": "external",
+    "name": "Float32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Float32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 35,
+    "kind": "external",
+    "name": "Float64Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Float64Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 36,
+    "kind": "external",
+    "name": "Map",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Map",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 37,
+    "kind": "external",
+    "name": "Set",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Set",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 38,
+    "kind": "external",
+    "name": "WeakMap",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~WeakMap",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 39,
+    "kind": "external",
+    "name": "WeakSet",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~WeakSet",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 40,
+    "kind": "external",
+    "name": "ArrayBuffer",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~ArrayBuffer",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 41,
+    "kind": "external",
+    "name": "DataView",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~DataView",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 42,
+    "kind": "external",
+    "name": "JSON",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~JSON",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 43,
+    "kind": "external",
+    "name": "Promise",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Promise",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 44,
+    "kind": "external",
+    "name": "Generator",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Generator",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 45,
+    "kind": "external",
+    "name": "GeneratorFunction",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~GeneratorFunction",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 46,
+    "kind": "external",
+    "name": "Reflect",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Reflect",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 47,
+    "kind": "external",
+    "name": "Proxy",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Proxy",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 48,
+    "kind": "file",
+    "name": "src/channel.js",
+    "content": "import { AsyncSubject, Observable } from 'rxjs';\nimport { publishReplay, refCount, filter, mergeAll } from 'rxjs/operators';\nimport { EndlessSubject, EndlessReplaySubject } from './rx/index';\nimport { findSubjectByName, compareTopics } from './utils/index';\n\n/**\n * Rxmq channel class\n */\nclass Channel {\n  /**\n   * Represents a new Rxmq channel.\n   * Normally you wouldn't need to instantiate it directly, you'd just work with existing instance.\n   * @constructor\n   * @param  {Array}   plugins  Array of plugins for new channel\n   * @return {void}\n   */\n  constructor(plugins = []) {\n    /**\n     * Internal set of utilities\n     * @type {Object}\n     * @private\n     */\n    this.utils = {\n      findSubjectByName,\n      compareTopics,\n    };\n\n    /**\n     * Instances of subjects\n     * @type {Array}\n     * @private\n     */\n    this.subjects = [];\n    /**\n     * Channel bus\n     * @type {EndlessReplaySubject}\n     * @private\n     */\n    this.channelBus = new EndlessReplaySubject();\n    /**\n     * Permanent channel bus stream as Observable\n     * @type {Observable}\n     * @private\n     */\n    this.channelStream = this.channelBus.pipe(\n      publishReplay(),\n      refCount()\n    );\n\n    // inject plugins\n    plugins.map(this.registerPlugin.bind(this));\n  }\n\n  /**\n   * Returns EndlessSubject representing given topic\n   * @param  {String}         name           Topic name\n   * @return {EndlessSubject}             EndlessSubject representing given topic\n   * @example\n   * const channel = rxmq.channel('test');\n   * const subject = channel.subject('test.topic');\n   */\n  subject(name, { Subject = EndlessSubject } = {}) {\n    let s = this.utils.findSubjectByName(this.subjects, name);\n    if (!s) {\n      s = new Subject();\n      s.name = name;\n      this.subjects.push(s);\n      this.channelBus.next(s);\n    }\n    return s;\n  }\n\n  /**\n   * Get an Observable for specific set of topics\n   * @param  {String}         name        Topic name / pattern\n   * @return {Observable}                 Observable for given set of topics\n   * @example\n   * const channel = rxmq.channel('test');\n   * channel.observe('test.topic')\n   *        .subscribe((res) => { // default Observable subscription\n   *            // handle results\n   *        });\n   */\n  observe(name) {\n    // create new topic if it's plain text\n    if (name.indexOf('#') === -1 && name.indexOf('*') === -1) {\n      return this.subject(name);\n    }\n    // return stream\n    return this.channelStream.pipe(\n      filter(obs => compareTopics(obs.name, name)),\n      mergeAll()\n    );\n  }\n\n  /**\n   * Do a request that will be replied into returned AsyncSubject\n   * Alias for '.request()' that uses single object as params\n   * @param  {Object}  options                   Request options\n   * @param  {String}  options.topic             Topic name\n   * @param  {Any}     options.data              Request data\n   * @param  {Object}  options.DefaultSubject    Response subject, defaults to AsyncSubject\n   * @return {AsyncSubject}                      AsyncSubject that will dispatch the response\n   * @example\n   * const channel = rxmq.channel('test');\n   * channel.requestTo({\n   *     topic: 'test.topic',\n   *     data: 'test data',\n   * }).subscribe((response) => { // default Observable subscription\n   *     // handle response\n   * });\n   */\n  request({ topic, data, Subject = AsyncSubject }) {\n    const subj = this.utils.findSubjectByName(this.subjects, topic);\n    if (!subj) {\n      return Observable.never();\n    }\n\n    // create reply subject\n    const replySubject = new Subject();\n    subj.next({ replySubject, data });\n    return replySubject;\n  }\n\n  /**\n   * Channel plugin registration\n   * @param  {Object} plugin Plugin object to apply\n   * @return {void}\n   */\n  registerPlugin(plugin) {\n    for (const prop in plugin) {\n      if (!this.hasOwnProperty(prop)) {\n        /**\n         * Hide from esdoc\n         * @private\n         */\n        this[prop] = plugin[prop];\n      }\n    }\n  }\n}\n\n/**\n * Channel definition\n */\nexport default Channel;\n",
+    "static": true,
+    "longname": "/pipeline/source/src/channel.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 49,
+    "kind": "class",
+    "name": "Channel",
+    "memberof": "src/channel.js",
+    "static": true,
+    "longname": "src/channel.js~Channel",
+    "access": "public",
+    "export": true,
+    "importPath": "rxmq/src/channel.js",
+    "importStyle": "Channel",
+    "description": "Rxmq channel class",
+    "lineNumber": 9,
+    "interface": false
+  },
+  {
+    "__docId__": 50,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/channel.js~Channel",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/channel.js~Channel#constructor",
+    "access": "public",
+    "description": "Represents a new Rxmq channel.\nNormally you wouldn't need to instantiate it directly, you'd just work with existing instance.",
+    "lineNumber": 17,
+    "unknown": [
+      {
+        "tagName": "@constructor",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Array"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "plugins",
+        "description": "Array of plugins for new channel"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "void"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 51,
+    "kind": "member",
+    "name": "utils",
+    "memberof": "src/channel.js~Channel",
+    "static": false,
+    "longname": "src/channel.js~Channel#utils",
+    "access": "private",
+    "description": "Internal set of utilities",
+    "lineNumber": 23,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 52,
+    "kind": "member",
+    "name": "subjects",
+    "memberof": "src/channel.js~Channel",
+    "static": false,
+    "longname": "src/channel.js~Channel#subjects",
+    "access": "private",
+    "description": "Instances of subjects",
+    "lineNumber": 33,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Array"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 53,
+    "kind": "member",
+    "name": "channelBus",
+    "memberof": "src/channel.js~Channel",
+    "static": false,
+    "longname": "src/channel.js~Channel#channelBus",
+    "access": "private",
+    "description": "Channel bus",
+    "lineNumber": 39,
+    "type": {
+      "nullable": null,
+      "types": [
+        "EndlessReplaySubject"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 54,
+    "kind": "member",
+    "name": "channelStream",
+    "memberof": "src/channel.js~Channel",
+    "static": false,
+    "longname": "src/channel.js~Channel#channelStream",
+    "access": "private",
+    "description": "Permanent channel bus stream as Observable",
+    "lineNumber": 45,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Observable"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 55,
+    "kind": "method",
+    "name": "subject",
+    "memberof": "src/channel.js~Channel",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/channel.js~Channel#subject",
+    "access": "public",
+    "description": "Returns EndlessSubject representing given topic",
+    "examples": [
+      "const channel = rxmq.channel('test');\nconst subject = channel.subject('test.topic');"
+    ],
+    "lineNumber": 62,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "name",
+        "description": "Topic name"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "EndlessSubject"
+      ],
+      "spread": false,
+      "description": "EndlessSubject representing given topic"
+    }
+  },
+  {
+    "__docId__": 56,
+    "kind": "method",
+    "name": "observe",
+    "memberof": "src/channel.js~Channel",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/channel.js~Channel#observe",
+    "access": "public",
+    "description": "Get an Observable for specific set of topics",
+    "examples": [
+      "const channel = rxmq.channel('test');\nchannel.observe('test.topic')\n       .subscribe((res) => { // default Observable subscription\n           // handle results\n       });"
+    ],
+    "lineNumber": 84,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "name",
+        "description": "Topic name / pattern"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Observable"
+      ],
+      "spread": false,
+      "description": "Observable for given set of topics"
+    }
+  },
+  {
+    "__docId__": 57,
+    "kind": "method",
+    "name": "request",
+    "memberof": "src/channel.js~Channel",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/channel.js~Channel#request",
+    "access": "public",
+    "description": "Do a request that will be replied into returned AsyncSubject\nAlias for '.request()' that uses single object as params",
+    "examples": [
+      "const channel = rxmq.channel('test');\nchannel.requestTo({\n    topic: 'test.topic',\n    data: 'test data',\n}).subscribe((response) => { // default Observable subscription\n    // handle response\n});"
+    ],
+    "lineNumber": 113,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options",
+        "description": "Request options"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options.topic",
+        "description": "Topic name"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Any"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options.data",
+        "description": "Request data"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options.DefaultSubject",
+        "description": "Response subject, defaults to AsyncSubject"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "AsyncSubject"
+      ],
+      "spread": false,
+      "description": "AsyncSubject that will dispatch the response"
+    }
+  },
+  {
+    "__docId__": 58,
+    "kind": "method",
+    "name": "registerPlugin",
+    "memberof": "src/channel.js~Channel",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/channel.js~Channel#registerPlugin",
+    "access": "public",
+    "description": "Channel plugin registration",
+    "lineNumber": 130,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "plugin",
+        "description": "Plugin object to apply"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "void"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 59,
+    "kind": "member",
+    "name": "[prop]",
+    "memberof": "src/channel.js~Channel",
+    "static": false,
+    "longname": "src/channel.js~Channel#[prop]",
+    "access": "private",
+    "description": "Hide from esdoc",
+    "lineNumber": 137,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 60,
+    "kind": "file",
+    "name": "src/index.js",
+    "content": "import Channel from './channel';\nimport Rxmq from './rxmq';\n\nexport { EndlessSubject, EndlessReplaySubject } from './rx/index';\nexport { Channel };\nexport default Rxmq;\n",
+    "static": true,
+    "longname": "/pipeline/source/src/index.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 61,
+    "kind": "file",
+    "name": "src/rx/endlessReplaySubject.js",
+    "content": "/* eslint no-param-reassign: [2, {\"props\": false}] */\nimport { ReplaySubject } from 'rxjs';\n\n/**\n * EndlessReplaySubject extension of ReplaySubject.\n * This is pretty hacky, but so far I'd found no better way of having\n * Subjects that do no close on multicasted stream completion and on multiple errors.\n * For documentation refer to\n * [ReplaySubject doc](@link https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/subjects/replaysubject.md).\n * The only difference is that EndlessReplaySubject never triggers '.complete()' and\n * does not closes observers on errors (thus allowing to continuously dispatch them).\n */\nclass EndlessReplaySubject extends ReplaySubject {\n  /**\n   * Dummy method override to prevent execution and Observable completion\n   * @return {void}\n   */\n  complete() {}\n\n  /**\n   * Override of error method that prevents stopping that Observer\n   * @param  {Error} error  - Error to be dispatched\n   * @return {void}\n   */\n  error(error) {\n    // store error\n    this.error = error;\n    // dispatch to all observers\n    this.observers.forEach(os => {\n      // dispatch\n      os.error(error);\n      // mark observer as not stopped\n      os.isStopped = false;\n    });\n  }\n}\n\nexport { EndlessReplaySubject };\n",
+    "static": true,
+    "longname": "/pipeline/source/src/rx/endlessReplaySubject.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 62,
+    "kind": "class",
+    "name": "EndlessReplaySubject",
+    "memberof": "src/rx/endlessReplaySubject.js",
+    "static": true,
+    "longname": "src/rx/endlessReplaySubject.js~EndlessReplaySubject",
+    "access": "public",
+    "export": true,
+    "importPath": "rxmq/src/rx/endlessReplaySubject.js",
+    "importStyle": "{EndlessReplaySubject}",
+    "description": "EndlessReplaySubject extension of ReplaySubject.\nThis is pretty hacky, but so far I'd found no better way of having\nSubjects that do no close on multicasted stream completion and on multiple errors.\nFor documentation refer to\n[ReplaySubject doc](@link https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/subjects/replaysubject.md).\nThe only difference is that EndlessReplaySubject never triggers '.complete()' and\ndoes not closes observers on errors (thus allowing to continuously dispatch them).",
+    "lineNumber": 13,
+    "interface": false,
+    "extends": [
+      "rxjs~ReplaySubject"
+    ]
+  },
+  {
+    "__docId__": 63,
+    "kind": "method",
+    "name": "complete",
+    "memberof": "src/rx/endlessReplaySubject.js~EndlessReplaySubject",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/rx/endlessReplaySubject.js~EndlessReplaySubject#complete",
+    "access": "public",
+    "description": "Dummy method override to prevent execution and Observable completion",
+    "lineNumber": 18,
+    "return": {
+      "nullable": null,
+      "types": [
+        "void"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 64,
+    "kind": "method",
+    "name": "error",
+    "memberof": "src/rx/endlessReplaySubject.js~EndlessReplaySubject",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/rx/endlessReplaySubject.js~EndlessReplaySubject#error",
+    "access": "public",
+    "description": "Override of error method that prevents stopping that Observer",
+    "lineNumber": 25,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Error"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "error",
+        "description": "Error to be dispatched"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "void"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 66,
+    "kind": "file",
+    "name": "src/rx/endlessSubject.js",
+    "content": "/* eslint no-param-reassign: [2, {\"props\": false}] */\nimport { Subject } from 'rxjs';\n\n/**\n * EndlessSubject extension of Rx.Subject.\n * This is pretty hacky, but so far I'd found no better way of having\n * Subjects that do no close on multicasted stream completion and on multiple errors.\n * For documentation refer to\n * [Rx.Subject docs](@link https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/subjects/subject.md).\n * The only difference is that EndlessSubject never triggers '.complete()' and\n * does not closes observers on errors (thus allowing to continuously dispatch them).\n */\nclass EndlessSubject extends Subject {\n  /**\n   * Dummy method override to prevent execution and Rx.Observable completion\n   * @return {void}\n   */\n  complete() {}\n\n  /**\n   * Override of error method that prevents stopping that Rx.Observer\n   * @param  {Error} error  - Error to be dispatched\n   * @return {void}\n   */\n  error(error) {\n    this.thrownError = error;\n    // dispatch to all observers\n    this.observers.forEach(os => {\n      // dispatch directly to destination\n      os.destination._error.call(os.destination._context, error);\n    });\n  }\n}\n\nexport { EndlessSubject };\n",
+    "static": true,
+    "longname": "/pipeline/source/src/rx/endlessSubject.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 67,
+    "kind": "class",
+    "name": "EndlessSubject",
+    "memberof": "src/rx/endlessSubject.js",
+    "static": true,
+    "longname": "src/rx/endlessSubject.js~EndlessSubject",
+    "access": "public",
+    "export": true,
+    "importPath": "rxmq/src/rx/endlessSubject.js",
+    "importStyle": "{EndlessSubject}",
+    "description": "EndlessSubject extension of Rx.Subject.\nThis is pretty hacky, but so far I'd found no better way of having\nSubjects that do no close on multicasted stream completion and on multiple errors.\nFor documentation refer to\n[Rx.Subject docs](@link https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/subjects/subject.md).\nThe only difference is that EndlessSubject never triggers '.complete()' and\ndoes not closes observers on errors (thus allowing to continuously dispatch them).",
+    "lineNumber": 13,
+    "interface": false,
+    "extends": [
+      "rxjs~Subject"
+    ]
+  },
+  {
+    "__docId__": 68,
+    "kind": "method",
+    "name": "complete",
+    "memberof": "src/rx/endlessSubject.js~EndlessSubject",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/rx/endlessSubject.js~EndlessSubject#complete",
+    "access": "public",
+    "description": "Dummy method override to prevent execution and Rx.Observable completion",
+    "lineNumber": 18,
+    "return": {
+      "nullable": null,
+      "types": [
+        "void"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 69,
+    "kind": "method",
+    "name": "error",
+    "memberof": "src/rx/endlessSubject.js~EndlessSubject",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/rx/endlessSubject.js~EndlessSubject#error",
+    "access": "public",
+    "description": "Override of error method that prevents stopping that Rx.Observer",
+    "lineNumber": 25,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Error"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "error",
+        "description": "Error to be dispatched"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "void"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 70,
+    "kind": "member",
+    "name": "thrownError",
+    "memberof": "src/rx/endlessSubject.js~EndlessSubject",
+    "static": false,
+    "longname": "src/rx/endlessSubject.js~EndlessSubject#thrownError",
+    "access": "public",
+    "description": null,
+    "lineNumber": 26,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 71,
+    "kind": "file",
+    "name": "src/rx/index.js",
+    "content": "export { EndlessSubject } from './endlessSubject';\nexport { EndlessReplaySubject } from './endlessReplaySubject';\n",
+    "static": true,
+    "longname": "/pipeline/source/src/rx/index.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 72,
+    "kind": "file",
+    "name": "src/rxmq.js",
+    "content": "import Channel from './channel';\n\n/**\n * Rxmq message bus class\n */\nclass Rxmq {\n  /**\n   * Represents a new Rxmq message bus.\n   * Normally you'd just use a signleton returned by default, but it's also\n   * possible to create a new instance of Rxmq should you need it.\n   * @constructor\n   * @example\n   * import {Rxmq} from 'rxmq';\n   * const myRxmq = new Rxmq();\n   */\n  constructor() {\n    /**\n     * Holds channels definitions\n     * @type {Object}\n     * @private\n     */\n    this.channels = {};\n    /**\n     * Holds channel plugins definitions\n     * @type {Object}\n     * @private\n     */\n    this.channelPlugins = [];\n  }\n\n  /**\n   * Returns a channel for given name\n   * @param  {String} name  Channel name\n   * @return {Channel}      Channel object\n   * @example\n   * const testChannel = rxmq.channel('test');\n   */\n  channel(name = 'defaultRxmqChannel') {\n    if (!this.channels[name]) {\n      this.channels[name] = new Channel(this.channelPlugins);\n    }\n\n    return this.channels[name];\n  }\n\n  /**\n   * Register new Rxmq plugin\n   * @param  {Object} plugin      Plugin object\n   * @return {void}\n   * @example\n   * import myPlugin from 'my-plugin';\n   * rxmq.registerPlugin(myPlugin);\n   */\n  registerPlugin(plugin) {\n    for (const prop in plugin) {\n      if (!this.hasOwnProperty(prop)) {\n        /**\n         * Hide from esdoc\n         * @private\n         */\n        this[prop] = plugin[prop];\n      }\n    }\n  }\n\n  /**\n   * Register new Channel plugin\n   * @param  {Object} plugin      Channel plugin object\n   * @return {void}\n   * @example\n   * import myChannelPlugin from 'my-channel-plugin';\n   * rxmq.registerChannelPlugin(myChannelPlugin);\n   */\n  registerChannelPlugin(plugin) {\n    this.channelPlugins.push(plugin);\n    for (const name in this.channels) {\n      if (this.channels.hasOwnProperty(name)) {\n        this.channels[name].registerPlugin(plugin);\n      }\n    }\n  }\n}\n\n/**\n * Rxmq bus definition\n */\nexport default Rxmq;\n",
+    "static": true,
+    "longname": "/pipeline/source/src/rxmq.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 73,
+    "kind": "class",
+    "name": "Rxmq",
+    "memberof": "src/rxmq.js",
+    "static": true,
+    "longname": "src/rxmq.js~Rxmq",
+    "access": "public",
+    "export": true,
+    "importPath": "rxmq/src/rxmq.js",
+    "importStyle": "Rxmq",
+    "description": "Rxmq message bus class",
+    "lineNumber": 6,
+    "interface": false
+  },
+  {
+    "__docId__": 74,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/rxmq.js~Rxmq",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/rxmq.js~Rxmq#constructor",
+    "access": "public",
+    "description": "Represents a new Rxmq message bus.\nNormally you'd just use a signleton returned by default, but it's also\npossible to create a new instance of Rxmq should you need it.",
+    "examples": [
+      "import {Rxmq} from 'rxmq';\nconst myRxmq = new Rxmq();"
+    ],
+    "lineNumber": 16,
+    "unknown": [
+      {
+        "tagName": "@constructor",
+        "tagValue": ""
+      }
+    ]
+  },
+  {
+    "__docId__": 75,
+    "kind": "member",
+    "name": "channels",
+    "memberof": "src/rxmq.js~Rxmq",
+    "static": false,
+    "longname": "src/rxmq.js~Rxmq#channels",
+    "access": "private",
+    "description": "Holds channels definitions",
+    "lineNumber": 22,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 76,
+    "kind": "member",
+    "name": "channelPlugins",
+    "memberof": "src/rxmq.js~Rxmq",
+    "static": false,
+    "longname": "src/rxmq.js~Rxmq#channelPlugins",
+    "access": "private",
+    "description": "Holds channel plugins definitions",
+    "lineNumber": 28,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 77,
+    "kind": "method",
+    "name": "channel",
+    "memberof": "src/rxmq.js~Rxmq",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/rxmq.js~Rxmq#channel",
+    "access": "public",
+    "description": "Returns a channel for given name",
+    "examples": [
+      "const testChannel = rxmq.channel('test');"
+    ],
+    "lineNumber": 38,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "name",
+        "description": "Channel name"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Channel"
+      ],
+      "spread": false,
+      "description": "Channel object"
+    }
+  },
+  {
+    "__docId__": 78,
+    "kind": "method",
+    "name": "registerPlugin",
+    "memberof": "src/rxmq.js~Rxmq",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/rxmq.js~Rxmq#registerPlugin",
+    "access": "public",
+    "description": "Register new Rxmq plugin",
+    "examples": [
+      "import myPlugin from 'my-plugin';\nrxmq.registerPlugin(myPlugin);"
+    ],
+    "lineNumber": 54,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "plugin",
+        "description": "Plugin object"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "void"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 79,
+    "kind": "member",
+    "name": "[prop]",
+    "memberof": "src/rxmq.js~Rxmq",
+    "static": false,
+    "longname": "src/rxmq.js~Rxmq#[prop]",
+    "access": "private",
+    "description": "Hide from esdoc",
+    "lineNumber": 61,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 80,
+    "kind": "method",
+    "name": "registerChannelPlugin",
+    "memberof": "src/rxmq.js~Rxmq",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/rxmq.js~Rxmq#registerChannelPlugin",
+    "access": "public",
+    "description": "Register new Channel plugin",
+    "examples": [
+      "import myChannelPlugin from 'my-channel-plugin';\nrxmq.registerChannelPlugin(myChannelPlugin);"
+    ],
+    "lineNumber": 74,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "plugin",
+        "description": "Channel plugin object"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "void"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 81,
+    "kind": "file",
+    "name": "src/utils/compareTopics.js",
+    "content": "/**\n * Converts topic to search regex\n * @param  {String} topic   Topic name\n * @return {Regex}          Search regex\n * @private\n */\nconst topicToRegex = topic =>\n  `^${topic.split('.').reduce((result, segment, index, arr) => {\n    let res = '';\n    if (arr[index - 1]) {\n      res = arr[index - 1] !== '#' ? '\\\\.\\\\b' : '\\\\b';\n    }\n    if (segment === '#') {\n      res += '[\\\\s\\\\S]*';\n    } else if (segment === '*') {\n      res += '[^.]+';\n    } else {\n      res += segment;\n    }\n    return result + res;\n  }, '')}$`;\n\n/**\n * Compares given topic with existing topic\n * @param  {String}  topic         Topic name\n * @param  {String}  existingTopic Topic name to compare to\n * @return {Boolean}               Whether topic is included in existingTopic\n * @example\n * should(compareTopics('test.one.two', 'test.#')).equal(true);\n * @private\n */\nconst compareTopics = (topic, existingTopic) => {\n  // if no # or * found, do plain string matching\n  if (existingTopic.indexOf('#') === -1 && existingTopic.indexOf('*') === -1) {\n    return topic === existingTopic;\n  }\n  // otherwise do regex matching\n  const pattern = topicToRegex(existingTopic);\n  const rgx = new RegExp(pattern);\n  const result = rgx.test(topic);\n  return result;\n};\n\nexport { compareTopics };\n",
+    "static": true,
+    "longname": "/pipeline/source/src/utils/compareTopics.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 82,
+    "kind": "function",
+    "name": "topicToRegex",
+    "memberof": "src/utils/compareTopics.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utils/compareTopics.js~topicToRegex",
+    "access": "private",
+    "export": false,
+    "importPath": "rxmq/src/utils/compareTopics.js",
+    "importStyle": null,
+    "description": "Converts topic to search regex",
+    "lineNumber": 7,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "topic",
+        "description": "Topic name"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Regex"
+      ],
+      "spread": false,
+      "description": "Search regex"
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 83,
+    "kind": "function",
+    "name": "compareTopics",
+    "memberof": "src/utils/compareTopics.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utils/compareTopics.js~compareTopics",
+    "access": "private",
+    "export": true,
+    "importPath": "rxmq/src/utils/compareTopics.js",
+    "importStyle": "{compareTopics}",
+    "description": "Compares given topic with existing topic",
+    "examples": [
+      "should(compareTopics('test.one.two', 'test.#')).equal(true);"
+    ],
+    "lineNumber": 32,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "topic",
+        "description": "Topic name"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "existingTopic",
+        "description": "Topic name to compare to"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Boolean"
+      ],
+      "spread": false,
+      "description": "Whether topic is included in existingTopic"
+    }
+  },
+  {
+    "__docId__": 84,
+    "kind": "file",
+    "name": "src/utils/findTopicByName.js",
+    "content": "/**\n * Find a specific subject by given name\n * @param  {Array}                  subjects    Array of subjects to search in\n * @param  {String}                 name        Name to search for\n * @return {(EndlessSubject|void)}              Found subject or void\n */\nconst findSubjectByName = (subjects, name) => {\n  const res = subjects.filter(s => s.name === name);\n  if (!res || res.length < 1) {\n    return undefined;\n  }\n\n  return res[0];\n};\n\nexport { findSubjectByName };\n",
+    "static": true,
+    "longname": "/pipeline/source/src/utils/findTopicByName.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 85,
+    "kind": "function",
+    "name": "findSubjectByName",
+    "memberof": "src/utils/findTopicByName.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utils/findTopicByName.js~findSubjectByName",
+    "access": "public",
+    "export": true,
+    "importPath": "rxmq/src/utils/findTopicByName.js",
+    "importStyle": "{findSubjectByName}",
+    "description": "Find a specific subject by given name",
+    "lineNumber": 7,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Array"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "subjects",
+        "description": "Array of subjects to search in"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "name",
+        "description": "Name to search for"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "EndlessSubject",
+        "void"
+      ],
+      "spread": false,
+      "description": "Found subject or void"
+    }
+  },
+  {
+    "__docId__": 86,
+    "kind": "file",
+    "name": "src/utils/index.js",
+    "content": "export { compareTopics } from './compareTopics';\nexport { findSubjectByName } from './findTopicByName';\n",
+    "static": true,
+    "longname": "/pipeline/source/src/utils/index.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "kind": "index",
+    "content": "# Rxmq.js\n\n[![Join the chat at https://gitter.im/rxmqjs/rxmq.js](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/rxmqjs/rxmq.js?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)\n[![wercker status](https://app.wercker.com/status/56f1fdd3a0180730a13447755e5714df/s 'wercker status')](https://app.wercker.com/project/bykey/56f1fdd3a0180730a13447755e5714df)\n[![npm](https://img.shields.io/npm/v/rxmq.svg)](https://www.npmjs.com/package/rxmq)\n[![MIT](https://img.shields.io/npm/l/rxmq.svg)](http://opensource.org/licenses/MIT)\n\n> JavaScript pub/sub library based on RxJS\n\n## What is it?\n\nRxmq.js is an in-memory message bus based on [reactive extensions](https://github.com/Reactive-Extensions/RxJS) - inspired by [postal.js](https://github.com/postaljs/postal.js) - written in JavaScript using ES6 and Babel.\nRxmq.js runs equally good in the browser and on the server using node.js.\nIt provides a 'broker' that allows for creation of more sophisticated pub/sub implementations than what you usually find in event-style based libraries.\nOn top of that, all used objects are parts of reactive extensions which allows doing a lot of cool things with them out of the box.\n\n## Quick start\n\nIf you want to subscribe to an observable, you tell Rxmq what channel and topic to subscribe to and a set of functions to be invoked (taken from [Rx.Observable.subscribe](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/operators/subscribe.md)):\n\n```js\nimport Rxmq from 'rxmq';\n\nconst subscription = Rxmq.channel('posts')\n  .observe('post.add')\n  .subscribe(\n    // following methods are same as for Rx.Observable.subscribe\n    data => {\n      // handle new data ...\n    },\n    error => {\n      // handle error ...\n    }\n  );\n```\n\nThe publisher might do something similar to this:\n\n```js\nRxmq.channel('posts')\n  .subject('post.add')\n  .next({\n    title: 'Woo-hoo, first post!',\n    text: 'My lengthy post here',\n  });\n```\n\nNote, that if you are not using ES6 modules (e.g. with babel), you will need to require Rxmq in the following way:\n\n```js\nvar Rxmq = require('rxmq').default;\n```\n\n### Channels? Topics?\n\nA channel is a logical partition of topics, more specifically - a set of topics.\nAs well explained by [postal.js readme section on channels](https://github.com/postaljs/postal.js/blob/master/README.md), conceptually, it's like a dedicated highway for a specific set of communication.\nIn case of Rxmq.js each topic is represented by a slightly tweaked [Rx.Subject](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/subjects/subject.md) (specifically - it never triggers `complete()`, so you can keep sending your data all the time).\nUsing channel- and topic-oriented messaging instead of traditional JavaScript approaches like callbacks or promises enables you to separate components (or modules) communication by context.\n\nIt's possible to get a more concise API if you want to hang onto a `Channel` - which can be really convenient while working with a specific channel (e.g. inside of a specific component):\n\n```js\nconst channel = Rxmq.channel('posts');\nconst subject = channel.subject('post.add');\n\nconst subscription = subject.subscribe(data => {\n  /*do stuff with data */\n});\n\nsubject.next({\n  title: 'Woo-hoo, first post!',\n  text: 'My lengthy post here',\n});\n```\n\n## How's Rxmq.js Different From {Insert Eventing Library Here}?\n\nSome of those are shamelessly taken from postal.js list :)\n\n- Rxmq is not an event emitter - it's not meant to be mixed into an instance. Instead, it's a stand alone 'broker' – a _message bus_.\n- Rxmq uses a slightly modified _Rx.Subject_ (it will never be completed or stopped by error) to pass messages. This means you use all the cool features of [Rx.Observable](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md) and [Rx.Observer](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observer.md) while working on your messaging.\n- Most 'event aggregator' libs are _single channel_ - which can lead to event name collision, and reduce the performance of matching an event to the correct subscribers. Rxmq is _multi-channel_.\n- Rxmq built-in topic logic supports hierarchical wildcard topic bindings - supporting the same logic as topic bindings in the AMQP spec. And if you don't like that approach, you can easily provide your own bindings resolver.\n\n## More on How to Use It\n\nHere are four examples of using Rxmq.\n\n```js\n// This gets you a handle to the default Rxmq channel\n// You can get a named channel instead like this:\n// const channel = Rxmq.channel('DoctorWho');\nconst channel = Rxmq.channel();\n\n// subscribe to 'name.change' topics\nconst subscription = channel.observe('name.change').subscribe(data => {\n  $('#example1').html('Name: ' + data.name);\n});\n\n// And someone publishes a name change:\nchannel.subject('name.change').next({ name: 'Dr. Who' });\n\n// To dispose, just trigger the unsubscribe() method:\nsubscription.unsubscribe();\n```\n\n### Subscribing to a wildcard topic using \\*\n\nThe `*` symbol represents 'one word' in a topic (i.e - the text between two periods of a topic).\nBy subscribing to `'*.changed'`, the binding will match `name.changed` & `location.changed` but _not_ `changed.companion`.\n\n```js\nconst chgSubscription = channel.observe('*.changed').subscribe(data => {\n  $('<li>' + data.type + ' changed: ' + data.value + '</li>').appendTo(\n    '#example2'\n  );\n});\nchannel.subject('name.changed').next({ type: 'Name', value: 'John Smith' });\nchannel\n  .subject('location.changed')\n  .next({ type: 'Location', value: 'Early 20th Century England' });\nchgSubscription.unsubscribe();\n```\n\n### Subscribing to a wildcard topic using &#35;\n\nThe `#` symbol represents 0-n number of characters/words in a topic string. By subscribing to `'DrWho.#.Changed'`, the binding will match `DrWho.NinthDoctor.Companion.Changed` & `DrWho.Location.Changed` but _not_ `Changed`.\n\n```javascript\nconst starSubscription = channel.observe('DrWho.#.Changed').subscribe(data => {\n  $('<li>' + data.type + ' Changed: ' + data.value + '</li>').appendTo(\n    '#example3'\n  );\n});\nchannel\n  .subject('DrWho.NinthDoctor.Companion.Changed')\n  .next({ type: 'Companion Name', value: 'Rose' });\nchannel\n  .subject('DrWho.TenthDoctor.Companion.Changed')\n  .next({ type: 'Companion Name', value: 'Martha' });\nchannel\n  .subject('DrWho.Eleventh.Companion.Changed')\n  .next({ type: 'Companion Name', value: 'Amy' });\nchannel\n  .subject('DrWho.Location.Changed')\n  .next({ type: 'Location', value: 'The Library' });\nchannel\n  .subject('TheMaster.DrumBeat.Changed')\n  .next({ type: 'DrumBeat', value: \"This won't trigger any subscriptions\" });\nchannel.subject('Changed').next({\n  type: 'Useless',\n  value: \"This won't trigger any subscriptions either\",\n});\nstarSubscription.unsubscribe();\n```\n\n### Using Rx.Observable methods with a subscription\n\n```js\nconst dupChannel = Rxmq.channel('Blink');\nconst dupSubscription = dupChannel\n  .observe('WeepingAngel.#')\n  .distinctUntilChanged()\n  .subscribe(data => {\n    $('<li>' + data.value + '</li>').appendTo('#example4');\n  });\n// demonstrating multiple channels per topic being used\n// You can do it this way if you like, but the example above has nicer syntax (and *much* less overhead)\ndupChannel.subject('WeepingAngel.DontBlink').next({ value: \"Don't Blink\" });\ndupChannel.subject('WeepingAngel.DontBlink').next({ value: \"Don't Blink\" });\ndupChannel\n  .subject('WeepingAngel.DontEvenBlink')\n  .next({ value: \"Don't Even Blink\" });\ndupChannel\n  .subject('WeepingAngel.DontBlink')\n  .next({ value: \"Don't Close Your Eyes\" });\ndupChannel.subject('WeepingAngel.DontBlink').next({ value: \"Don't Blink\" });\ndupChannel.subject('WeepingAngel.DontBlink').next({ value: \"Don't Blink\" });\ndupSubscription.unsubscribe();\n```\n\n### Using request-response pattern\n\nTo make a request, you can do the following:\n\n```js\nconst channel = rxmq.channel('user');\n\nchannel\n  .request({ topic: 'last.login', data: { userId: 8675309 } })\n  .timeout(2000)\n  .subscribe(\n    data =>\n      console.log(\n        `Last login for userId: ${data.userId} occurred on ${data.time}`\n      ),\n    err => console.error('Uh oh! Error:', err),\n    () => console.log('done!')\n  );\n```\n\nIt's also possible to make a request with custom reply subject, like so:\n\n```js\nconst channel = rxmq.channel('user');\n\nchannel\n  .request({\n    topic: 'posts.all',\n    data: { userId: 8675309 },\n    Subject: Rx.Subject,\n  })\n  .subscribe(\n    post => console.log(`Got post: ${post.id}`),\n    err => console.error('Uh oh! Error:', err),\n    () => console.log('done!')\n  );\n```\n\nTo handle requests:\n\n```js\n// SUCCESS REPLY\nconst subscription = channel\n  .observe('last.login')\n  .subscribe(({ data, replySubject }) => {\n    const result = getLoginInfo(data.userId);\n    // `replySubject` is just a Rx.AsyncSubject\n    replySubject.next({ time: result.time, userId: data.userId });\n    replySubject.complete();\n  });\n\n// ERROR REPLY\nconst subscription = channel\n  .observe('last.login')\n  .subscribe(({ data, replySubject }) => {\n    const result = getLoginInfo(data.userId);\n    // `replySubject` is just a Rx.AsyncSubject\n    replySubject.error(new Error('No such user'));\n    replySubject.complete();\n  });\n```\n\nMake sure to _always_ call `.complete()` after you're done with dispatching your data.\n\n### Connecting external Rx.Observable to Rxmq topic\n\n```js\nconst topic = channel.subject('ajax');\nconst ajax = Rx.Observable.fromPromise($.ajax({ url: 'http://...' }).promise());\najax.multicast(topic).connect();\n```\n\n## More References\n\nPlease visit the [rxmq.js documentation](http://rxmqjs.github.io/rxmq.js/) website for full API documentation.\n\n## Available plugins\n\n- [rxmq.aliases](https://github.com/rxmqjs/rxmq.aliases) - a plugin that provides bus- and channel-level convenience aliases.\n- [rxmq.middleware](https://github.com/rxmqjs/rxmq.middleware) - a plugin that adds support for topic-based middleware.\n\n## I still need help!\n\nFeel free to ask any questions you might have by [opening an issue](https://github.com/rxmqjs/rxmq.js/issues).\n\n## Build, Dependencies, etc.\n\n- Rxmq depends only on [RxJS](https://github.com/Reactive-Extensions/RxJS).\n\n## Can I contribute?\n\nSure thing!\nWhile project is still in its early days, I hope the API is relatively stable.\nPull requests are welcome, but please make sure to include tests for your additions.\n\n## License\n\n[MIT](http://www.opensource.org/licenses/mit-license)\n",
+    "longname": "/pipeline/source/README.md",
+    "name": "./README.md",
+    "static": true,
+    "access": "public"
+  },
+  {
+    "kind": "packageJSON",
+    "content": "{\n  \"name\": \"rxmq\",\n  \"version\": \"2.0.0\",\n  \"description\": \"JavaScript pub/sub library based on RxJS\",\n  \"main\": \"es5/component.js\",\n  \"es6\": \"index.js\",\n  \"scripts\": {\n    \"cover\": \"babel-node ./node_modules/istanbul/lib/cli cover ./node_modules/tape/bin/tape ./test\",\n    \"build\": \"NODE_ENV=production rollup -c\",\n    \"test\": \"babel-node ./node_modules/tape/bin/tape ./test | tap-dot && npm run test-typings\",\n    \"test-typings\": \"./node_modules/.bin/tsc --noImplicitAny --lib es6,dom --noEmit ts/rxmq-test.ts\",\n    \"lint\": \"eslint src/ test/ index.js\",\n    \"docs\": \"esdoc -c esdoc.json\",\n    \"prepublish\": \"npm run build\"\n  },\n  \"contributors\": [\n    \"Tim Ermilov <yamalight@gmail.com> (http://codezen.net)\",\n    \"Denis Kuchelev (https://github.com/kuchelev)\",\n    \"Niels Grewe (https://github.com/ngrewe)\",\n    \"ILYA (https://github.com/ilkray)\"\n  ],\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"https://github.com/rxmqjs/rxmq.js\"\n  },\n  \"babel\": {\n    \"env\": {\n      \"production\": {\n        \"presets\": [\n          \"@babel/preset-env\"\n        ]\n      },\n      \"development\": {\n        \"presets\": [\n          \"@babel/preset-env\"\n        ]\n      }\n    }\n  },\n  \"license\": \"MIT\",\n  \"dependencies\": {\n    \"rxjs\": \"^6.3.3\"\n  },\n  \"devDependencies\": {\n    \"@babel/core\": \"^7.1.2\",\n    \"@babel/node\": \"^7.0.0\",\n    \"@babel/preset-env\": \"^7.1.0\",\n    \"babel-eslint\": \"^10.0.2\",\n    \"babel-preset-env\": \"^1.7.0\",\n    \"esdoc\": \"^1.1.0\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"eslint\": \"^6.1.0\",\n    \"eslint-config-prettier\": \"^6.0.0\",\n    \"eslint-config-standard\": \"^13.0.1\",\n    \"eslint-plugin-import\": \"^2.18.2\",\n    \"eslint-plugin-node\": \"^9.1.0\",\n    \"eslint-plugin-prettier\": \"^3.1.0\",\n    \"eslint-plugin-promise\": \"^4.2.1\",\n    \"eslint-plugin-standard\": \"^4.0.0\",\n    \"istanbul\": \"^1.1.0-alpha.1\",\n    \"prettier\": \"^1.18.2\",\n    \"rollup\": \"^1.19.4\",\n    \"rollup-plugin-babel\": \"^4.0.3\",\n    \"tap-dot\": \"^2.0.0\",\n    \"tape\": \"^4.9.1\",\n    \"typescript\": \"^3.1.1\"\n  },\n  \"types\": \"./ts/rxmq.d.ts\"\n}\n",
+    "longname": "/pipeline/source/package.json",
+    "name": "package.json",
+    "static": true,
+    "access": "public"
+  }
+]
