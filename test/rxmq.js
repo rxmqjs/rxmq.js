@@ -1,5 +1,5 @@
 import test from 'tape';
-import {Subject} from 'rxjs/Rx';
+import {Subject} from 'rxjs';
 import Rxmq from '../index';
 
 test('RxMQ', it => {

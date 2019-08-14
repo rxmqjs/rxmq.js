@@ -1,5 +1,5 @@
 /* eslint no-param-reassign: [2, {"props": false}] */
-import {ReplaySubject} from 'rxjs/Rx';
+import {ReplaySubject} from 'rxjs';
 
 /**
  * EndlessReplaySubject extension of ReplaySubject.

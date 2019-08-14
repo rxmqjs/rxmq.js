@@ -37,8 +37,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "rxjs": "^6.3.3",
-    "rxjs-compat": "^6.3.3"
+    "rxjs": "^6.3.3"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
