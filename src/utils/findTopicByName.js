@@ -13,4 +13,4 @@ const findSubjectByName = (subjects, name) => {
   return res[0];
 };
 
-export {findSubjectByName};
+export { findSubjectByName };

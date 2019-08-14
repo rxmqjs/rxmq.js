@@ -1,2 +1,2 @@
-export {EndlessSubject} from './endlessSubject';
-export {EndlessReplaySubject} from './endlessReplaySubject';
+export { EndlessSubject } from './endlessSubject';
+export { EndlessReplaySubject } from './endlessReplaySubject';

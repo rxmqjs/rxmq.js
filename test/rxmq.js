@@ -1,6 +1,6 @@
 import test from 'tape';
-import {Subject} from 'rxjs';
-import Rxmq from '../index';
+import { Subject } from 'rxjs';
+import Rxmq from '../';
 
 test('RxMQ', it => {
   it.test('# should register plugin', t => {
@@ -46,7 +46,7 @@ test('RxMQ', it => {
 
     subit.test('# should create new subject with custom Subject', t => {
       const channel = Rxmq.channel('customSubject');
-      const subj = channel.subject('test', {Subject: Subject});
+      const subj = channel.subject('test', { Subject: Subject });
       t.plan(2);
       subj.subscribe(
         ok => {
@@ -62,20 +62,23 @@ test('RxMQ', it => {
       subj.complete();
     });
 
-    subit.test('# should create and subscribe to one-to-many subscription', t => {
-      const channel = Rxmq.channel('test');
-      const subj = channel.subject('oneToMany');
+    subit.test(
+      '# should create and subscribe to one-to-many subscription',
+      t => {
+        const channel = Rxmq.channel('test');
+        const subj = channel.subject('oneToMany');
 
-      // test data
-      const testMessage = 'test message';
-      // subscribe
-      const sub = subj.subscribe(item => {
-        sub.unsubscribe();
-        t.equal(item, testMessage);
-        t.end();
-      });
-      subj.next(testMessage);
-    });
+        // test data
+        const testMessage = 'test message';
+        // subscribe
+        const sub = subj.subscribe(item => {
+          sub.unsubscribe();
+          t.equal(item, testMessage);
+          t.end();
+        });
+        subj.next(testMessage);
+      }
+    );
 
     subit.test('# should publish to multiple channels', t => {
       const multiChannel = Rxmq.channel('multitest');
@@ -123,8 +126,8 @@ test('RxMQ', it => {
     });
 
     /*
-         * Request-response tests
-         */
+     * Request-response tests
+     */
     subit.test('# should create one-to-one subscription', t => {
       const topic = 'request-reply';
       const channel = Rxmq.channel('request');
@@ -132,42 +135,47 @@ test('RxMQ', it => {
       const testRequest = 'test request';
       const testReply = 'test reply';
 
-      rrSub.subscribe(({data, replySubject}) => {
+      rrSub.subscribe(({ data, replySubject }) => {
         t.equal(data, testRequest);
         replySubject.next(testReply);
         replySubject.complete();
       });
-      channel.request({topic, data: testRequest}).subscribe(replyData => {
+      channel.request({ topic, data: testRequest }).subscribe(replyData => {
         t.equal(replyData, testReply);
         t.end();
       });
     });
 
-    subit.test('# should create one-to-one subscription with custom reply subject', t => {
-      const topic = 'custom-request-reply';
-      const channel = Rxmq.channel('request');
-      const rrSub = channel.subject(topic);
-      const testRequest = 'test request';
-      const testReply = ['test reply', 'test reply 2', 'test reply 3'];
+    subit.test(
+      '# should create one-to-one subscription with custom reply subject',
+      t => {
+        const topic = 'custom-request-reply';
+        const channel = Rxmq.channel('request');
+        const rrSub = channel.subject(topic);
+        const testRequest = 'test request';
+        const testReply = ['test reply', 'test reply 2', 'test reply 3'];
 
-      rrSub.subscribe(({replySubject}) => {
-        testReply.map(item => replySubject.next(item));
-        replySubject.complete();
-      });
-      // test reply
-      const fullReply = [];
-      channel.request({topic, data: testRequest, Subject: Subject}).subscribe(
-        replyData => {
-          fullReply.push(replyData);
-        },
-        e => {
-          throw e;
-        },
-        () => {
-          fullReply.map((item, i) => t.equal(testReply[i], item));
-          t.end();
-        }
-      );
-    });
+        rrSub.subscribe(({ replySubject }) => {
+          testReply.map(item => replySubject.next(item));
+          replySubject.complete();
+        });
+        // test reply
+        const fullReply = [];
+        channel
+          .request({ topic, data: testRequest, Subject: Subject })
+          .subscribe(
+            replyData => {
+              fullReply.push(replyData);
+            },
+            e => {
+              throw e;
+            },
+            () => {
+              fullReply.map((item, i) => t.equal(testReply[i], item));
+              t.end();
+            }
+          );
+      }
+    );
   });
 });

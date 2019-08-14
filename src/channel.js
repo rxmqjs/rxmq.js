@@ -1,7 +1,7 @@
-import {AsyncSubject, Observable} from 'rxjs';
-import {publishReplay, refCount, filter, mergeAll} from 'rxjs/operators'
-import {EndlessSubject, EndlessReplaySubject} from './rx/index';
-import {findSubjectByName, compareTopics} from './utils/index';
+import { AsyncSubject, Observable } from 'rxjs';
+import { publishReplay, refCount, filter, mergeAll } from 'rxjs/operators';
+import { EndlessSubject, EndlessReplaySubject } from './rx/index';
+import { findSubjectByName, compareTopics } from './utils/index';
 
 /**
  * Rxmq channel class
@@ -59,7 +59,7 @@ class Channel {
    * const channel = rxmq.channel('test');
    * const subject = channel.subject('test.topic');
    */
-  subject(name, {Subject = EndlessSubject} = {}) {
+  subject(name, { Subject = EndlessSubject } = {}) {
     let s = this.utils.findSubjectByName(this.subjects, name);
     if (!s) {
       s = new Subject();
@@ -110,7 +110,7 @@ class Channel {
    *     // handle response
    * });
    */
-  request({topic, data, Subject = AsyncSubject}) {
+  request({ topic, data, Subject = AsyncSubject }) {
     const subj = this.utils.findSubjectByName(this.subjects, topic);
     if (!subj) {
       return Observable.never();
@@ -118,7 +118,7 @@ class Channel {
 
     // create reply subject
     const replySubject = new Subject();
-    subj.next({replySubject, data});
+    subj.next({ replySubject, data });
     return replySubject;
   }
 

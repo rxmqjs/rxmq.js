@@ -1,5 +1,5 @@
 import test from 'tape';
-import {compareTopics} from '../src/utils';
+import { compareTopics } from '../src/utils';
 
 test('Utils', describe => {
   describe.test('> Topic Comparator', it => {

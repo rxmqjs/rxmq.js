@@ -1,2 +1,2 @@
-export {compareTopics} from './compareTopics';
-export {findSubjectByName} from './findTopicByName';
+export { compareTopics } from './compareTopics';
+export { findSubjectByName } from './findTopicByName';

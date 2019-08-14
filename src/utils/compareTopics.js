@@ -41,4 +41,4 @@ const compareTopics = (topic, existingTopic) => {
   return result;
 };
 
-export {compareTopics};
+export { compareTopics };
