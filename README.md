@@ -99,7 +99,7 @@ const subscription = channel.observe('name.change').subscribe(data => {
 });
 
 // And someone publishes a name change:
-channel.subject('name.change').next({name: 'Dr. Who'});
+channel.subject('name.change').next({ name: 'Dr. Who' });
 
 // To dispose, just trigger the unsubscribe() method:
 subscription.unsubscribe();
@@ -112,10 +112,14 @@ By subscribing to `'*.changed'`, the binding will match `name.changed` & `locati
 
 ```js
 const chgSubscription = channel.observe('*.changed').subscribe(data => {
-  $('<li>' + data.type + ' changed: ' + data.value + '</li>').appendTo('#example2');
+  $('<li>' + data.type + ' changed: ' + data.value + '</li>').appendTo(
+    '#example2'
+  );
 });
-channel.subject('name.changed').next({type: 'Name', value: 'John Smith'});
-channel.subject('location.changed').next({type: 'Location', value: 'Early 20th Century England'});
+channel.subject('name.changed').next({ type: 'Name', value: 'John Smith' });
+channel
+  .subject('location.changed')
+  .next({ type: 'Location', value: 'Early 20th Century England' });
 chgSubscription.unsubscribe();
 ```
 
@@ -125,14 +129,29 @@ The `#` symbol represents 0-n number of characters/words in a topic string. By s
 
 ```javascript
 const starSubscription = channel.observe('DrWho.#.Changed').subscribe(data => {
-  $('<li>' + data.type + ' Changed: ' + data.value + '</li>').appendTo('#example3');
+  $('<li>' + data.type + ' Changed: ' + data.value + '</li>').appendTo(
+    '#example3'
+  );
 });
-channel.subject('DrWho.NinthDoctor.Companion.Changed').next({type: 'Companion Name', value: 'Rose'});
-channel.subject('DrWho.TenthDoctor.Companion.Changed').next({type: 'Companion Name', value: 'Martha'});
-channel.subject('DrWho.Eleventh.Companion.Changed').next({type: 'Companion Name', value: 'Amy'});
-channel.subject('DrWho.Location.Changed').next({type: 'Location', value: 'The Library'});
-channel.subject('TheMaster.DrumBeat.Changed').next({type: 'DrumBeat', value: "This won't trigger any subscriptions"});
-channel.subject('Changed').next({type: 'Useless', value: "This won't trigger any subscriptions either"});
+channel
+  .subject('DrWho.NinthDoctor.Companion.Changed')
+  .next({ type: 'Companion Name', value: 'Rose' });
+channel
+  .subject('DrWho.TenthDoctor.Companion.Changed')
+  .next({ type: 'Companion Name', value: 'Martha' });
+channel
+  .subject('DrWho.Eleventh.Companion.Changed')
+  .next({ type: 'Companion Name', value: 'Amy' });
+channel
+  .subject('DrWho.Location.Changed')
+  .next({ type: 'Location', value: 'The Library' });
+channel
+  .subject('TheMaster.DrumBeat.Changed')
+  .next({ type: 'DrumBeat', value: "This won't trigger any subscriptions" });
+channel.subject('Changed').next({
+  type: 'Useless',
+  value: "This won't trigger any subscriptions either",
+});
 starSubscription.unsubscribe();
 ```
 
@@ -148,12 +167,16 @@ const dupSubscription = dupChannel
   });
 // demonstrating multiple channels per topic being used
 // You can do it this way if you like, but the example above has nicer syntax (and *much* less overhead)
-dupChannel.subject('WeepingAngel.DontBlink').next({value: "Don't Blink"});
-dupChannel.subject('WeepingAngel.DontBlink').next({value: "Don't Blink"});
-dupChannel.subject('WeepingAngel.DontEvenBlink').next({value: "Don't Even Blink"});
-dupChannel.subject('WeepingAngel.DontBlink').next({value: "Don't Close Your Eyes"});
-dupChannel.subject('WeepingAngel.DontBlink').next({value: "Don't Blink"});
-dupChannel.subject('WeepingAngel.DontBlink').next({value: "Don't Blink"});
+dupChannel.subject('WeepingAngel.DontBlink').next({ value: "Don't Blink" });
+dupChannel.subject('WeepingAngel.DontBlink').next({ value: "Don't Blink" });
+dupChannel
+  .subject('WeepingAngel.DontEvenBlink')
+  .next({ value: "Don't Even Blink" });
+dupChannel
+  .subject('WeepingAngel.DontBlink')
+  .next({ value: "Don't Close Your Eyes" });
+dupChannel.subject('WeepingAngel.DontBlink').next({ value: "Don't Blink" });
+dupChannel.subject('WeepingAngel.DontBlink').next({ value: "Don't Blink" });
 dupSubscription.unsubscribe();
 ```
 
@@ -165,10 +188,13 @@ To make a request, you can do the following:
 const channel = rxmq.channel('user');
 
 channel
-  .request({topic: 'last.login', data: {userId: 8675309}})
+  .request({ topic: 'last.login', data: { userId: 8675309 } })
   .timeout(2000)
   .subscribe(
-    data => console.log(`Last login for userId: ${data.userId} occurred on ${data.time}`),
+    data =>
+      console.log(
+        `Last login for userId: ${data.userId} occurred on ${data.time}`
+      ),
     err => console.error('Uh oh! Error:', err),
     () => console.log('done!')
   );
@@ -180,7 +206,11 @@ It's also possible to make a request with custom reply subject, like so:
 const channel = rxmq.channel('user');
 
 channel
-  .request({topic: 'posts.all', data: {userId: 8675309}, Subject: Rx.Subject})
+  .request({
+    topic: 'posts.all',
+    data: { userId: 8675309 },
+    Subject: Rx.Subject,
+  })
   .subscribe(
     post => console.log(`Got post: ${post.id}`),
     err => console.error('Uh oh! Error:', err),
@@ -192,20 +222,24 @@ To handle requests:
 
 ```js
 // SUCCESS REPLY
-const subscription = channel.observe('last.login').subscribe(({data, replySubject}) => {
-  const result = getLoginInfo(data.userId);
-  // `replySubject` is just a Rx.AsyncSubject
-  replySubject.next({time: result.time, userId: data.userId});
-  replySubject.complete();
-});
+const subscription = channel
+  .observe('last.login')
+  .subscribe(({ data, replySubject }) => {
+    const result = getLoginInfo(data.userId);
+    // `replySubject` is just a Rx.AsyncSubject
+    replySubject.next({ time: result.time, userId: data.userId });
+    replySubject.complete();
+  });
 
 // ERROR REPLY
-const subscription = channel.observe('last.login').subscribe(({data, replySubject}) => {
-  const result = getLoginInfo(data.userId);
-  // `replySubject` is just a Rx.AsyncSubject
-  replySubject.error(new Error('No such user'));
-  replySubject.complete();
-});
+const subscription = channel
+  .observe('last.login')
+  .subscribe(({ data, replySubject }) => {
+    const result = getLoginInfo(data.userId);
+    // `replySubject` is just a Rx.AsyncSubject
+    replySubject.error(new Error('No such user'));
+    replySubject.complete();
+  });
 ```
 
 Make sure to _always_ call `.complete()` after you're done with dispatching your data.
@@ -214,7 +248,7 @@ Make sure to _always_ call `.complete()` after you're done with dispatching your
 
 ```js
 const topic = channel.subject('ajax');
-const ajax = Rx.Observable.fromPromise($.ajax({url: 'http://...'}).promise());
+const ajax = Rx.Observable.fromPromise($.ajax({ url: 'http://...' }).promise());
 ajax.multicast(topic).connect();
 ```
 
@@ -229,18 +263,11 @@ Please visit the [rxmq.js documentation](http://rxmqjs.github.io/rxmq.js/) websi
 
 ## I still need help!
 
-Feel free to ask any questions you might have on [our gitter channel](https://gitter.im/rxmqjs/rxmq.js).
-Some of the developers and contributors are there most of the time.
-If you have any RxJS related questions, I'd recommend asking on [RxJS gitter channel](https://gitter.im/Reactive-Extensions/RxJS), it's pretty great!
+Feel free to ask any questions you might have by [opening an issue](https://github.com/rxmqjs/rxmq.js/issues).
 
 ## Build, Dependencies, etc.
 
-- Rxmq depends only on [RxJS](https://github.com/Reactive-Extensions/RxJS), and since Rxmq really just uses `Rx.Subject` and `Rx.Observable.observe` methods, using [rx.lite](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/libraries/lite/rx.lite.md) is sufficient.
-- Rxmq uses [turris-gulp-tasks](https://github.com/turrisjs/turris-gulp-tasks) for building, running tests and examples.
-  _ To build
-  _ run `npm install` to install all deps \* run `npm run build` - then check the `es5/` folder for the output
-  - To run tests & examples
-    - Tests are node-based: `npm test`
+- Rxmq depends only on [RxJS](https://github.com/Reactive-Extensions/RxJS).
 
 ## Can I contribute?
 
