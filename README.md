@@ -157,10 +157,12 @@ starSubscription.unsubscribe();
 ### Using Rx.Observable methods with a subscription
 
 ```js
+import { distinctUntilKeyChanged } from 'rxjs/operators';
+
 const dupChannel = Rxmq.channel('Blink');
 const dupSubscription = dupChannel
   .observe('WeepingAngel.#')
-  .distinctUntilChanged()
+  .pipe(distinctUntilKeyChanged('name'))
   .subscribe(data => {
     $('<li>' + data.value + '</li>').appendTo('#example4');
   });
