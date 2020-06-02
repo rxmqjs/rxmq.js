@@ -62,23 +62,20 @@ test('RxMQ', it => {
       subj.complete();
     });
 
-    subit.test(
-      '# should create and subscribe to one-to-many subscription',
-      t => {
-        const channel = Rxmq.channel('test');
-        const subj = channel.subject('oneToMany');
+    subit.test('# should create and subscribe to one-to-many subscription', t => {
+      const channel = Rxmq.channel('test');
+      const subj = channel.subject('oneToMany');
 
-        // test data
-        const testMessage = 'test message';
-        // subscribe
-        const sub = subj.subscribe(item => {
-          sub.unsubscribe();
-          t.equal(item, testMessage);
-          t.end();
-        });
-        subj.next(testMessage);
-      }
-    );
+      // test data
+      const testMessage = 'test message';
+      // subscribe
+      const sub = subj.subscribe(item => {
+        sub.unsubscribe();
+        t.equal(item, testMessage);
+        t.end();
+      });
+      subj.next(testMessage);
+    });
 
     subit.test('# should publish to multiple channels', t => {
       const multiChannel = Rxmq.channel('multitest');
@@ -123,9 +120,7 @@ test('RxMQ', it => {
 
         const observedEventsFirstSub = [];
         // generate first sub
-        const sub = chan
-          .observe('test.#')
-          .subscribe(data => observedEventsFirstSub.push(data));
+        const sub = chan.observe('test.#').subscribe(data => observedEventsFirstSub.push(data));
 
         // publish, which should be consumed by sub
         chan.subject('test.one').next(testData1);
@@ -135,9 +130,7 @@ test('RxMQ', it => {
         sub.unsubscribe();
 
         const observedEventsSecondSub = [];
-        chan
-          .observe('test.#')
-          .subscribe(data => observedEventsSecondSub.push(data));
+        chan.observe('test.#').subscribe(data => observedEventsSecondSub.push(data));
 
         const testData2 = 'test-data-2';
         chan.subject('test.one').next(testData2);
@@ -161,24 +154,12 @@ test('RxMQ', it => {
       const observedEventsPatternObs2 = [];
       const observedEventsPatternObs3 = [];
 
-      channel
-        .observe('topic.publish')
-        .subscribe(e => observedEventsObs1.push(e));
-      channel
-        .observe('topic.publish')
-        .subscribe(e => observedEventsObs2.push(e));
-      channel
-        .observe('topic.publish')
-        .subscribe(e => observedEventsObs3.push(e));
-      channel
-        .observe('topic.*')
-        .subscribe(e => observedEventsPatternObs1.push(e));
-      channel
-        .observe('topic.*')
-        .subscribe(e => observedEventsPatternObs2.push(e));
-      channel
-        .observe('topic.*')
-        .subscribe(e => observedEventsPatternObs3.push(e));
+      channel.observe('topic.publish').subscribe(e => observedEventsObs1.push(e));
+      channel.observe('topic.publish').subscribe(e => observedEventsObs2.push(e));
+      channel.observe('topic.publish').subscribe(e => observedEventsObs3.push(e));
+      channel.observe('topic.*').subscribe(e => observedEventsPatternObs1.push(e));
+      channel.observe('topic.*').subscribe(e => observedEventsPatternObs2.push(e));
+      channel.observe('topic.*').subscribe(e => observedEventsPatternObs3.push(e));
 
       channel.subject('topic.publish').next(e1);
       channel.subject('topic.publish').next(e2);
@@ -197,7 +178,10 @@ test('RxMQ', it => {
     subit.test('# should allow dispatching several errors', t => {
       t.plan(4);
       const subject = Rxmq.channel('mutlierror').subject('test');
-      subject.subscribe(val => t.ok(val), e => t.assert(e));
+      subject.subscribe(
+        val => t.ok(val),
+        e => t.assert(e)
+      );
       subject.error(new Error('test'));
       subject.error(new Error('test 2'));
       subject.error(new Error('test 3'));
@@ -225,36 +209,31 @@ test('RxMQ', it => {
       });
     });
 
-    subit.test(
-      '# should create one-to-one subscription with custom reply subject',
-      t => {
-        const topic = 'custom-request-reply';
-        const channel = Rxmq.channel('request');
-        const rrSub = channel.subject(topic);
-        const testRequest = 'test request';
-        const testReply = ['test reply', 'test reply 2', 'test reply 3'];
+    subit.test('# should create one-to-one subscription with custom reply subject', t => {
+      const topic = 'custom-request-reply';
+      const channel = Rxmq.channel('request');
+      const rrSub = channel.subject(topic);
+      const testRequest = 'test request';
+      const testReply = ['test reply', 'test reply 2', 'test reply 3'];
 
-        rrSub.subscribe(({ replySubject }) => {
-          testReply.map(item => replySubject.next(item));
-          replySubject.complete();
-        });
-        // test reply
-        const fullReply = [];
-        channel
-          .request({ topic, data: testRequest, Subject: Subject })
-          .subscribe(
-            replyData => {
-              fullReply.push(replyData);
-            },
-            e => {
-              throw e;
-            },
-            () => {
-              fullReply.map((item, i) => t.equal(testReply[i], item));
-              t.end();
-            }
-          );
-      }
-    );
+      rrSub.subscribe(({ replySubject }) => {
+        testReply.map(item => replySubject.next(item));
+        replySubject.complete();
+      });
+      // test reply
+      const fullReply = [];
+      channel.request({ topic, data: testRequest, Subject: Subject }).subscribe(
+        replyData => {
+          fullReply.push(replyData);
+        },
+        e => {
+          throw e;
+        },
+        () => {
+          fullReply.map((item, i) => t.equal(testReply[i], item));
+          t.end();
+        }
+      );
+    });
   });
 });
