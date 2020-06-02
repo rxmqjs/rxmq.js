@@ -116,7 +116,6 @@ test('RxMQ', it => {
     });
 
     subit.test('should not republish the same message multiple times', t => {
-      console.log('Running this test!!!');
       const chan = Rxmq.channel('repubmultipletimestest');
       const testData1 = 'test-data-1';
 

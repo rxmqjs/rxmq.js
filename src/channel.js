@@ -1,7 +1,7 @@
 import { AsyncSubject, Observable } from 'rxjs';
-import { publishReplay, refCount, filter, mergeAll, share } from 'rxjs/operators';
-import { EndlessSubject, EndlessReplaySubject } from './rx/index';
-import { findSubjectByName, compareTopics } from './utils/index';
+import { filter, mergeAll } from 'rxjs/operators';
+import { EndlessReplaySubject, EndlessSubject } from './rx/index';
+import { compareTopics, findSubjectByName } from './utils/index';
 
 /**
  * Rxmq channel class
@@ -42,9 +42,7 @@ class Channel {
      * @type {Observable}
      * @private
      */
-    this.channelStream = this.channelBus.pipe(
-      share()
-    );
+    this.channelStream = this.channelBus;
 
     // inject plugins
     plugins.map(this.registerPlugin.bind(this));
