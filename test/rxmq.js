@@ -115,37 +115,39 @@ test('RxMQ', it => {
       resubChan.subject('test.one').next(testData[0]);
     });
 
-    subit.test('should not republish the same message multiple times', t => {
-      const chan = Rxmq.channel('repubmultipletimestest');
-      const testData1 = 'test-data-1';
+    subit.test(
+      'should not republish the same message multiple times on unsubscribing to a topic and resubscribing',
+      t => {
+        const chan = Rxmq.channel('unsub-then-new-sub');
+        const testData1 = 'test-data-1';
 
-      const observedEventsFirstSub = [];
-      // generate first sub
-      const sub = chan
-        .observe('test.#')
-        .subscribe(data => observedEventsFirstSub.push(data));
+        const observedEventsFirstSub = [];
+        // generate first sub
+        const sub = chan
+          .observe('test.#')
+          .subscribe(data => observedEventsFirstSub.push(data));
 
-      // publish, which should be consumed by sub
-      chan.subject('test.one').next(testData1);
+        // publish, which should be consumed by sub
+        chan.subject('test.one').next(testData1);
 
-      t.equal(observedEventsFirstSub.length, 1);
-      t.equal(observedEventsFirstSub[0], testData1);
+        t.deepLooseEqual(observedEventsFirstSub, [testData1]);
 
-      sub.unsubscribe();
+        sub.unsubscribe();
 
-      const observedEventsSecondSub = [];
-      chan
-        .observe('test.#')
-        .subscribe(data => observedEventsSecondSub.push(data));
+        const observedEventsSecondSub = [];
+        chan
+          .observe('test.#')
+          .subscribe(data => observedEventsSecondSub.push(data));
 
-      const testData2 = 'test-data-2';
-      chan.subject('test.one').next(testData2);
+        const testData2 = 'test-data-2';
+        chan.subject('test.one').next(testData2);
 
-      t.equal(observedEventsSecondSub.length, 1);
-      t.equal(observedEventsSecondSub[0], testData2);
-      t.end();
-    });
+        t.deepLooseEqual(observedEventsSecondSub, [testData2]);
+        t.end();
+      }
+    );
 
+    // Test for #25
     subit.test('wildcard and non wildcard consumers should get events', t => {
       const channel = Rxmq.channel('wildcard-and-non-wildcard');
 
