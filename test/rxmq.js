@@ -97,7 +97,7 @@ test('RxMQ', it => {
     subit.test('# should publish to multiple channels', t => {
       const resubChan = Rxmq.channel('resubtest');
       const testData = ['test', 'test2'];
-      t.plan(3);
+      t.plan(2);
       // generate first sub
       const sub = resubChan.observe('test.#').subscribe(data => {
         t.equal(data, testData[0]);
@@ -113,6 +113,84 @@ test('RxMQ', it => {
       });
       // send
       resubChan.subject('test.one').next(testData[0]);
+    });
+
+    subit.test('should not republish the same message multiple times', t => {
+      console.log('Running this test!!!');
+      const chan = Rxmq.channel('repubmultipletimestest');
+      const testData1 = 'test-data-1';
+
+      const observedEventsFirstSub = [];
+      // generate first sub
+      const sub = chan
+        .observe('test.#')
+        .subscribe(data => observedEventsFirstSub.push(data));
+
+      // publish, which should be consumed by sub
+      chan.subject('test.one').next(testData1);
+
+      t.equal(observedEventsFirstSub.length, 1);
+      t.equal(observedEventsFirstSub[0], testData1);
+
+      sub.unsubscribe();
+
+      const observedEventsSecondSub = [];
+      chan
+        .observe('test.#')
+        .subscribe(data => observedEventsSecondSub.push(data));
+
+      const testData2 = 'test-data-2';
+      chan.subject('test.one').next(testData2);
+
+      t.equal(observedEventsSecondSub.length, 1);
+      t.equal(observedEventsSecondSub[0], testData2);
+      t.end();
+    });
+
+    subit.test('wildcard and non wildcard consumers should get events', t => {
+      const channel = Rxmq.channel('wildcard-and-non-wildcard');
+
+      const e1 = { value: 1 };
+      const e2 = { value: 2 };
+
+      const observedEventsObs1 = [];
+      const observedEventsObs2 = [];
+      const observedEventsObs3 = [];
+      const observedEventsPatternObs1 = [];
+      const observedEventsPatternObs2 = [];
+      const observedEventsPatternObs3 = [];
+
+      channel
+        .observe('topic.publish')
+        .subscribe(e => observedEventsObs1.push(e));
+      channel
+        .observe('topic.publish')
+        .subscribe(e => observedEventsObs2.push(e));
+      channel
+        .observe('topic.publish')
+        .subscribe(e => observedEventsObs3.push(e));
+      channel
+        .observe('topic.*')
+        .subscribe(e => observedEventsPatternObs1.push(e));
+      channel
+        .observe('topic.*')
+        .subscribe(e => observedEventsPatternObs2.push(e));
+      channel
+        .observe('topic.*')
+        .subscribe(e => observedEventsPatternObs3.push(e));
+
+      channel.subject('topic.publish').next(e1);
+      channel.subject('topic.publish').next(e2);
+
+      const inputEvents = [e1, e2];
+      t.deepLooseEqual(observedEventsObs1, inputEvents);
+      t.deepLooseEqual(observedEventsObs2, inputEvents);
+      t.deepLooseEqual(observedEventsObs3, inputEvents);
+      t.deepLooseEqual(observedEventsPatternObs1, inputEvents);
+      t.deepLooseEqual(observedEventsPatternObs2, inputEvents);
+      t.deepLooseEqual(observedEventsPatternObs3, inputEvents);
+
+      t.end();
     });
 
     subit.test('# should allow dispatching several errors', t => {

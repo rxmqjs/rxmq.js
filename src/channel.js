@@ -1,5 +1,5 @@
 import { AsyncSubject, Observable } from 'rxjs';
-import { publishReplay, refCount, filter, mergeAll } from 'rxjs/operators';
+import { publishReplay, refCount, filter, mergeAll, share } from 'rxjs/operators';
 import { EndlessSubject, EndlessReplaySubject } from './rx/index';
 import { findSubjectByName, compareTopics } from './utils/index';
 
@@ -43,8 +43,7 @@ class Channel {
      * @private
      */
     this.channelStream = this.channelBus.pipe(
-      publishReplay(),
-      refCount()
+      share()
     );
 
     // inject plugins
